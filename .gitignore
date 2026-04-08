@@ -1,0 +1,8 @@
+.examples/
+
+# Local private folders
+.secrets
+.references
+.venv
+.archive
+

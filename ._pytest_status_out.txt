@@ -1,0 +1,18 @@
+
+=========================== short test summary info ===========================
+ERROR tests/0.core/test_core_agent.py - StopIteration
+ERROR tests/0.core/test_core_base.py - StopIteration
+ERROR tests/0.core/test_core_contracts.py - StopIteration
+ERROR tests/0.core/test_core_defs.py - StopIteration
+ERROR tests/0.core/test_core_errors.py - StopIteration
+ERROR tests/0.core/test_core_facade.py - StopIteration
+ERROR tests/0.core/test_core_logging.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_async_lifecycle.py - StopIt...
+ERROR tests/1.unit/providers_tests/test_providers_basic.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_dingtalk.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_invalid_init.py - StopItera...
+ERROR tests/1.unit/providers_tests/test_providers_slack.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_telegram_format.py - StopIt...
+ERROR tests/1.unit/providers_tests/test_providers_telegram_utils.py - StopIte...
+!!!!!!!!!!!!!!!!!! Interrupted: 14 errors during collection !!!!!!!!!!!!!!!!!!!
+14 errors in 13.47s

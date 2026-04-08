@@ -1,0 +1,1645 @@
+chat_id,username,first_name,datetime,message_id,reply_to_message_id,message_type,message
+819525545,muhdashe,MUHD,2026-02-26T16:03:34+00:00,54,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:35+00:00,55,,agent,.
+819525545,,,2026-02-26T16:03:35+00:00,55,54,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:36+00:00,56,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:36+00:00,57,,agent,.
+819525545,,,2026-02-26T16:03:36+00:00,57,56,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:37+00:00,58,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:38+00:00,59,,agent,.
+819525545,,,2026-02-26T16:03:38+00:00,59,58,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:40+00:00,60,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:03:40+00:00,61,,agent,.
+819525545,,,2026-02-26T16:03:40+00:00,61,60,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:12+00:00,62,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:13+00:00,63,,agent,.
+819525545,,,2026-02-26T16:12:13+00:00,63,62,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:14+00:00,64,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:14+00:00,65,64,agent,.
+819525545,,,2026-02-26T16:12:14+00:00,65,64,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:15+00:00,66,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:15+00:00,67,,agent,.
+819525545,,,2026-02-26T16:12:15+00:00,67,66,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:16+00:00,68,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:12:16+00:00,69,68,agent,.
+819525545,,,2026-02-26T16:12:16+00:00,69,68,agent,.
+819525545,muhdashe,MUHD,2026-02-26T16:14:55+00:00,70,,user,.
+819525545,muhdashe,MUHD,2026-02-26T16:14:56+00:00,71,,agent,.
+819525545,,,2026-02-26T16:14:56+00:00,71,70,agent,.
+819525545,muhdashe,MUHD,2026-02-26T17:56:30+00:00,72,,user,.
+819525545,muhdashe,MUHD,2026-02-26T17:56:30+00:00,73,72,agent,.
+819525545,,,2026-02-26T17:56:30+00:00,73,72,agent,.
+819525545,muhdashe,MUHD,2026-02-26T17:56:31+00:00,74,,user,.
+819525545,muhdashe,MUHD,2026-02-26T17:56:32+00:00,75,,agent,.
+819525545,,,2026-02-26T17:56:32+00:00,75,74,agent,.
+819525545,muhdashe,MUHD,2026-02-26T19:02:39+00:00,76,,user,.
+819525545,muhdashe,MUHD,2026-02-26T19:02:40+00:00,77,76,agent,.
+819525545,,,2026-02-26T19:02:40+00:00,77,76,agent,.
+819525545,muhdashe,MUHD,2026-02-26T19:55:33+00:00,78,,user,.
+819525545,muhdashe,MUHD,2026-02-26T19:55:34+00:00,79,78,agent,.
+819525545,,,2026-02-26T19:55:34+00:00,79,78,agent,.
+819525545,muhdashe,MUHD,2026-02-26T19:56:42+00:00,80,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T20:39:14+00:00,83,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T20:40:02+00:00,84,,user,.
+819525545,muhdashe,MUHD,2026-02-26T20:40:02+00:00,85,84,agent,.
+819525545,,,2026-02-26T20:40:02+00:00,85,84,agent,.
+819525545,muhdashe,MUHD,2026-02-26T20:40:03+00:00,86,,user,.
+819525545,muhdashe,MUHD,2026-02-26T20:40:04+00:00,87,,agent,.
+819525545,,,2026-02-26T20:40:04+00:00,87,86,agent,.
+819525545,muhdashe,MUHD,2026-02-26T20:41:29+00:00,88,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T20:44:04+00:00,90,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T20:48:21+00:00,91,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T20:48:34+00:00,92,,user,.
+819525545,muhdashe,MUHD,2026-02-26T20:48:35+00:00,93,92,agent,.
+819525545,,,2026-02-26T20:48:35+00:00,93,92,agent,.
+819525545,muhdashe,MUHD,2026-02-26T21:00:21+00:00,94,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T21:00:45+00:00,95,,user,.
+819525545,muhdashe,MUHD,2026-02-26T21:00:46+00:00,96,95,agent,.
+819525545,,,2026-02-26T21:00:46+00:00,96,95,agent,.
+819525545,muhdashe,MUHD,2026-02-26T21:07:40+00:00,97,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T22:03:54+00:00,98,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T22:15:26+00:00,99,,user,@xwchat_parrot_bot hi
+819525545,muhdashe,MUHD,2026-02-26T22:15:27+00:00,100,99,agent,@xwchat_parrot_bot hi
+819525545,,,2026-02-26T22:15:27+00:00,100,99,agent,@xwchat_parrot_bot hi
+819525545,muhdashe,MUHD,2026-02-26T22:27:12+00:00,101,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T22:27:48+00:00,102,,user,.
+819525545,,,2026-02-26T22:27:49+00:00,103,102,agent,.
+819525545,muhdashe,MUHD,2026-02-26T23:22:08+00:00,128,,agent,Parrot is ready 🦜
+-5256347627,,,2026-02-26T23:22:08+00:00,129,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T23:23:46+00:00,130,,agent,Parrot is ready 🦜
+-5256347627,,,2026-02-26T23:23:46+00:00,131,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T23:24:03+00:00,133,,user,dfs
+819525545,,,2026-02-26T23:24:04+00:00,134,133,agent,dfs
+-5256347627,muhdashe,MUHD,2026-02-26T23:24:13+00:00,135,,user,hi
+-5256347627,,,2026-02-26T23:24:13+00:00,136,135,agent,hi
+819525545,muhdashe,MUHD,2026-02-26T23:32:43+00:00,137,,agent,Parrot is ready 🦜
+-5256347627,,,2026-02-26T23:32:43+00:00,138,,agent,Parrot is ready 🦜
+819525545,muhdashe,MUHD,2026-02-26T23:32:59+00:00,139,,agent,Parrot is ready 🦜
+-5256347627,,,2026-02-26T23:32:59+00:00,140,,agent,Parrot is ready 🦜
+-5256347627,muhdashe,MUHD,2026-02-26T23:34:08+00:00,142,,user,hi
+-5256347627,,,2026-02-26T23:34:09+00:00,143,142,agent,hi
+819525545,muhdashe,MUHD,2026-02-28T03:59:38+00:00,146,,user,/weather jeddah
+819525545,,,2026-02-28T03:59:40+00:00,147,146,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 19.8 °C
+Humidity: 64 %
+Wind: 10.8 km/h (direction 15°)
+Pressure: 1010.8 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:00:03+00:00,148,,user,/weather Riyadh
+819525545,,,2026-02-28T04:00:09+00:00,149,148,agent,"🌤 Weather for Riyadh, SA
+Condition: Partly cloudy
+Temperature: 15.8 °C
+Humidity: 31 %
+Wind: 4.8 km/h (direction 347°)
+Pressure: 1011.1 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:00:43+00:00,150,,user,/weather minsk
+819525545,,,2026-02-28T04:00:44+00:00,151,150,agent,"🌤 Weather for Minsk, BY
+Condition: Overcast
+Temperature: -0.7 °C
+Humidity: 87 %
+Wind: 10.4 km/h (direction 196°)
+Pressure: 1024.1 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:00:57+00:00,152,,user,/weather mars
+819525545,,,2026-02-28T04:00:59+00:00,153,152,agent,"🌤 Weather for Mars, US
+Condition: Clear
+Temperature: 5.0 °C
+Humidity: 61 %
+Wind: 9.7 km/h (direction 176°)
+Pressure: 1014.7 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:01:16+00:00,154,,user,/weather dskjnfjksd
+819525545,,,2026-02-28T04:01:18+00:00,155,154,agent,"No location found for ""dskjnfjksd"". Try another city name."
+819525545,muhdashe,MUHD,2026-02-28T04:03:09+00:00,157,,user,/weather dskjnfjksd
+819525545,muhdashe,MUHD,2026-02-28T04:03:17+00:00,158,,user,/weather dskjnfjksd
+819525545,,,2026-02-28T04:03:19+00:00,159,158,agent,"No location found for ""dskjnfjksd"". Try another city name."
+819525545,muhdashe,MUHD,2026-02-28T04:04:32+00:00,160,,user,/weather dskjnfjksd
+819525545,muhdashe,MUHD,2026-02-28T04:04:41+00:00,161,,user,/weather dskjnfjksd
+819525545,,,2026-02-28T04:04:43+00:00,162,161,agent,"No location found for ""dskjnfjksd"". Try another city name."
+819525545,muhdashe,MUHD,2026-02-28T04:05:10+00:00,163,,user,/weather dskjnfjksd
+819525545,,,2026-02-28T04:05:11+00:00,164,163,agent,"No location found for ""dskjnfjksd"". Try another city name."
+819525545,muhdashe,MUHD,2026-02-28T04:05:38+00:00,165,,user,/weather moscow
+819525545,,,2026-02-28T04:05:41+00:00,166,165,agent,❌ Error executing command: XWBotCommand.observe_api_agent.<locals>.handler() got an unexpected keyword argument 'args'
+819525545,muhdashe,MUHD,2026-02-28T04:05:53+00:00,167,,user,/weather moscow
+819525545,,,2026-02-28T04:05:53+00:00,168,167,agent,❌ Error executing command: XWBotCommand.observe_api_agent.<locals>.handler() got an unexpected keyword argument 'args'
+819525545,muhdashe,MUHD,2026-02-28T04:06:56+00:00,170,,user,/weather jeddah
+819525545,,,2026-02-28T04:06:57+00:00,171,170,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 19.8 °C
+Humidity: 64 %
+Wind: 11.1 km/h (direction 13°)
+Pressure: 1010.9 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:13:54+00:00,172,,user,/weather jeddah
+819525545,muhdashe,MUHD,2026-02-28T04:14:07+00:00,173,,user,/weather jeddah
+819525545,muhdashe,MUHD,2026-02-28T04:20:46+00:00,174,173,user,/weather jeddah
+819525545,muhdashe,MUHD,2026-02-28T04:21:26+00:00,176,,user,/weather jeddah
+819525545,muhdashe,MUHD,2026-02-28T04:21:52+00:00,177,,user,/weather jeddah
+819525545,,,2026-02-28T04:21:54+00:00,178,177,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 20.0 °C
+Humidity: 63 %
+Wind: 11.4 km/h (direction 11°)
+Pressure: 1011.1 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:23:11+00:00,179,,user,/help
+819525545,,,2026-02-28T04:23:12+00:00,180,179,agent,"🤖 *parrot - Available Commands*
+
+
+*General Commands:*
+• `/repeat`
+  _In:_ string (str)
+• `/weather`
+  _In:_ city (str)
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T04:25:07+00:00,182,,user,/help
+819525545,,,2026-02-28T04:25:07+00:00,183,182,agent,"🤖 *parrot - Available Commands*
+
+
+*General Commands:*
+• `/repeat`
+  _In:_ string (str)
+• `/weather`
+  _In:_ city (str)
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T04:25:14+00:00,184,,user,/weather jeddah
+819525545,,,2026-02-28T04:25:15+00:00,185,184,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 20.0 °C
+Humidity: 63 %
+Wind: 11.4 km/h (direction 11°)
+Pressure: 1011.1 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:25:38+00:00,186,,user,/help
+819525545,,,2026-02-28T04:25:39+00:00,187,186,agent,"🤖 *parrot - Available Commands*
+
+
+*PARROT Commands:*
+• `/repeat`
+  _Summary:_ Echo back the rest of the message
+  _Description:_ Echoes everything after /repeat.
+  _In:_ message (Any), context (Any) [optional], text (str) [optional]
+  _Out:_ str
+• `/weather`
+  _Summary:_ Get weather for a city
+  _Description:_ Returns current weather via Open-Meteo. Input: city name.
+  _In:_ city (str), message (Any) [optional], context (Any) [optional]
+  _Out:_ str
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T04:26:01+00:00,188,,user,/weather jeddah
+819525545,muhdashe,MUHD,2026-02-28T04:31:43+00:00,190,,user,/help
+819525545,,,2026-02-28T04:31:44+00:00,191,190,agent,"🤖 *parrot - Available Commands*
+
+
+*PARROT Commands:*
+• `/repeat`
+  _Summary:_ Echo back the rest of the message
+  _Description:_ Echoes everything after /repeat.
+  _In:_ message (Any), context (Any) [optional], text (str) [optional]
+  _Out:_ str
+• `/weather`
+  _Summary:_ Get weather for a city
+  _Description:_ Returns current weather via Open-Meteo. Input: city name.
+  _In:_ city (str), message (Any) [optional], context (Any) [optional]
+  _Out:_ str
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T04:31:48+00:00,192,,user,/weather jeddah
+819525545,,,2026-02-28T04:31:50+00:00,193,192,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 20.3 °C
+Humidity: 62 %
+Wind: 11.7 km/h (direction 11°)
+Pressure: 1011.2 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T04:32:45+00:00,197,,user,/help
+819525545,,,2026-02-28T04:32:46+00:00,198,197,agent,"🤖 *parrot - Available Commands*
+
+
+*General Commands:*
+• `/repeat`
+  _In:_ repeat (str)
+• `/weather`
+  _In:_ city (str)
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T04:32:57+00:00,199,,user,/weather jeddah
+819525545,,,2026-02-28T04:32:59+00:00,200,199,agent,"🌤 Weather for Jeddah, SA
+Condition: Clear
+Temperature: 20.3 °C
+Humidity: 62 %
+Wind: 11.7 km/h (direction 11°)
+Pressure: 1011.2 hPa
+Precipitation: 0.0 mm"
+819525545,muhdashe,MUHD,2026-02-28T16:22:32+00:00,1,,user,/start
+819525545,,,2026-02-28T16:22:33+00:00,2,1,agent,"🤖 *karizma_assistant - Available Commands*
+
+
+*KARIZMA_ASSISTANT Commands:*
+• `/echo`
+  _Summary:_ Echo back your message
+  _Description:_ Echoes everything after /echo.
+  _In:_ message (Any), context (Any) [optional], text (str) [optional]
+  _Out:_ str
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T16:22:41+00:00,3,,user,/help
+819525545,,,2026-02-28T16:22:42+00:00,4,3,agent,"🤖 *karizma_assistant - Available Commands*
+
+
+*KARIZMA_ASSISTANT Commands:*
+• `/echo`
+  _Summary:_ Echo back your message
+  _Description:_ Echoes everything after /echo.
+  _In:_ message (Any), context (Any) [optional], text (str) [optional]
+  _Out:_ str
+
+*Use `/help` to see this message again.*"
+819525545,muhdashe,MUHD,2026-02-28T16:23:57+00:00,5,,user,/echo hi
+819525545,,,2026-02-28T16:23:58+00:00,6,5,agent,hi
+819525545,muhdashe,MUHD,2026-02-28T16:24:00+00:00,7,,user,hi
+819525545,,,2026-02-28T16:24:01+00:00,8,7,agent,❌ Unknown command: /hi. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T16:29:42+00:00,9,,user,.
+819525545,,,2026-02-28T16:29:42+00:00,10,9,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T16:29:46+00:00,11,,user,/help
+819525545,muhdashe,MUHD,2026-02-28T16:29:58+00:00,12,,user,.
+819525545,,,2026-02-28T16:29:59+00:00,13,12,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T16:30:01+00:00,14,,user,/help
+819525545,muhdashe,MUHD,2026-02-28T16:30:05+00:00,15,,user,/echo hi
+819525545,,,2026-02-28T16:30:05+00:00,16,15,agent,hi
+819525545,muhdashe,MUHD,2026-02-28T17:44:18+00:00,21,,user,.
+819525545,,,2026-02-28T17:44:19+00:00,22,21,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T17:44:21+00:00,23,,user,/help
+819525545,muhdashe,MUHD,2026-02-28T17:46:59+00:00,24,,user,/help
+819525545,muhdashe,MUHD,2026-02-28T17:47:06+00:00,25,,user,.
+819525545,,,2026-02-28T17:47:06+00:00,26,25,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T17:47:16+00:00,27,,user,.
+819525545,,,2026-02-28T17:47:17+00:00,28,27,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T17:48:20+00:00,30,,user,.
+819525545,,,2026-02-28T17:48:21+00:00,31,30,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T17:48:30+00:00,32,,user,/help
+819525545,muhdashe,MUHD,2026-02-28T17:48:44+00:00,33,,user,/repeat .
+819525545,,,2026-02-28T17:48:45+00:00,34,33,agent,❌ Unknown command: /repeat. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T18:49:38+00:00,35,,user,.
+819525545,,,2026-02-28T18:49:39+00:00,36,35,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-02-28T18:49:42+00:00,37,,user,/help
+819525545,,,2026-02-28T18:49:42+00:00,38,37,agent,"🤖 karizmaassistant - Available Commands</b>
+
+
+<b>KARIZMAASSISTANT Commands:
+• /echo
+  Summary: Echo back your message
+  Description: Echoes everything after /echo.
+  In: message (Any), context (Any) [optional], text (str) [optional]
+  Out: str
+
+Use /help to see this message again."
+819525545,muhdashe,MUHD,2026-03-01T02:28:00+00:00,39,,user,.
+819525545,,,2026-03-01T02:28:01+00:00,40,39,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-03-01T02:28:04+00:00,41,,user,/help
+819525545,muhdashe,MUHD,2026-03-01T02:28:29+00:00,42,,user,/profile 777777
+819525545,,,2026-03-01T02:28:29+00:00,43,42,agent,❌ Access denied. Required roles: scout
+819525545,muhdashe,MUHD,2026-03-01T02:30:00+00:00,44,,user,/send
+819525545,,,2026-03-01T02:30:01+00:00,45,44,agent,❌ Unknown command: /send. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-03-01T02:30:14+00:00,46,,user,/help
+819525545,muhdashe,MUHD,2026-03-01T02:31:18+00:00,47,,user,/help
+819525545,muhdashe,MUHD,2026-03-01T02:34:11+00:00,49,,user,/help
+819525545,,,2026-03-01T02:34:12+00:00,50,49,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T02:34:31+00:00,51,,user,/profile 777777
+819525545,muhdashe,MUHD,2026-03-01T02:34:41+00:00,52,,user,.
+819525545,muhdashe,MUHD,2026-03-01T02:34:52+00:00,53,,user,/help
+819525545,,,2026-03-01T02:34:53+00:00,54,53,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T02:34:59+00:00,55,,user,.
+819525545,muhdashe,MUHD,2026-03-01T02:39:52+00:00,56,,user,.
+819525545,muhdashe,MUHD,2026-03-01T02:40:09+00:00,57,,user,/help
+819525545,,,2026-03-01T02:40:10+00:00,58,57,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T02:43:34+00:00,59,,user,/help
+819525545,,,2026-03-01T02:43:36+00:00,60,59,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T02:43:45+00:00,61,,user,.
+819525545,,,2026-03-01T02:43:46+00:00,62,61,agent,❌ Unknown command: /.. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-03-01T02:43:52+00:00,63,,user,/revive
+819525545,,,2026-03-01T02:43:53+00:00,64,63,agent,"❌ Access denied. Required roles: admin, owner"
+819525545,muhdashe,MUHD,2026-03-01T02:59:30+00:00,65,,user,/status
+819525545,,,2026-03-01T02:59:31+00:00,66,65,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-01T02:59:39+00:00,67,,user,/help
+819525545,,,2026-03-01T02:59:40+00:00,68,67,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T03:04:25+00:00,71,,user,/help
+819525545,,,2026-03-01T03:04:26+00:00,72,71,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T03:04:30+00:00,73,,user,/status
+819525545,,,2026-03-01T03:04:30+00:00,74,73,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No session created for: RU-KARIZMA"
+819525545,muhdashe,MUHD,2026-03-01T03:20:57+00:00,76,,user,/status
+819525545,,,2026-03-01T03:20:58+00:00,77,76,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-01T22:02:38+00:00,78,,user,/status
+819525545,,,2026-03-01T22:02:38+00:00,79,78,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-01T22:02:49+00:00,80,,user,/help
+819525545,,,2026-03-01T22:02:50+00:00,81,80,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T22:03:14+00:00,82,,user,/scout_remove
+819525545,,,2026-03-01T22:03:15+00:00,83,82,agent,"❌ Access denied. Required roles: management, owner"
+819525545,muhdashe,MUHD,2026-03-01T22:59:09+00:00,84,,user,/help
+819525545,,,2026-03-01T22:59:10+00:00,85,84,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (Optional) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-03-01T22:59:14+00:00,86,,user,/status
+819525545,,,2026-03-01T22:59:14+00:00,87,86,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-01T23:06:43+00:00,88,,user,/status
+819525545,,,2026-03-01T23:06:45+00:00,89,88,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-03T23:48:15+00:00,90,,user,/status
+819525545,,,2026-03-03T23:48:16+00:00,91,90,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-04T00:14:31+00:00,93,,user,/status
+819525545,,,2026-03-04T00:14:33+00:00,94,93,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-04T00:29:36+00:00,97,,user,/status
+819525545,,,2026-03-04T00:29:37+00:00,98,97,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-03-04T00:32:33+00:00,99,,user,/status
+819525545,,,2026-03-04T00:32:38+00:00,100,99,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T19:41:13+00:00,261,,user,/help
+819525545,,,2026-04-03T19:41:14+00:00,262,261,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T19:41:42+00:00,263,,user,/status
+819525545,,,2026-04-03T19:41:43+00:00,264,263,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T19:42:50+00:00,265,,user,/revive
+819525545,,,2026-04-03T19:42:50+00:00,266,265,agent,"❌ Access denied. Required roles: admin, owner"
+819525545,muhdashe,MUHD,2026-04-03T19:59:17+00:00,270,,user,/help
+819525545,,,2026-04-03T19:59:24+00:00,273,270,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T19:59:20+00:00,271,,user,/revive
+819525545,,,2026-04-03T19:59:24+00:00,274,271,agent,"❌ Access denied. Required roles: admin, owner"
+819525545,muhdashe,MUHD,2026-04-03T19:59:24+00:00,272,,user,/status
+819525545,,,2026-04-03T19:59:24+00:00,275,272,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T20:33:15+00:00,277,,user,/status
+819525545,,,2026-04-03T20:33:23+00:00,279,277,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T20:33:21+00:00,278,,user,/help
+819525545,,,2026-04-03T20:33:23+00:00,280,278,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T20:33:43+00:00,281,,user,/status
+819525545,,,2026-04-03T20:33:43+00:00,282,281,agent,"📋 Status
+❌ Authentication: No auth provider configured
+❌ Storage: No storage provider configured
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T21:57:57+00:00,283,,user,/status
+819525545,,,2026-04-03T21:58:04+00:00,284,283,agent,"📋 Status
+✅ Authentication (google_sheets): OK
+✅ Storage (local_data): OK
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T21:58:31+00:00,285,,user,/profile 777777
+819525545,,,2026-04-03T21:58:32+00:00,286,285,agent,❌ Access denied. Required roles: scout
+819525545,muhdashe,MUHD,2026-04-03T21:59:06+00:00,287,,user,/roles
+819525545,,,2026-04-03T21:59:07+00:00,288,287,agent,❌ Unknown command: /roles. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-04-03T21:59:11+00:00,289,,user,/help
+819525545,,,2026-04-03T21:59:11+00:00,290,289,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T21:59:22+00:00,291,,user,/role
+819525545,,,2026-04-03T21:59:23+00:00,292,291,agent,❌ Unknown command: /role. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-04-03T22:49:26+00:00,293,,user,/role
+819525545,,,2026-04-03T22:49:40+00:00,295,293,agent,❌ Unknown command: /role. Use /help for available commands.
+819525545,muhdashe,MUHD,2026-04-03T22:49:32+00:00,294,,user,/roles
+819525545,,,2026-04-03T22:49:40+00:00,296,294,agent,"👥 Roles & groups
+App / LMAM roles: anyone
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-03T23:04:23+00:00,297,,user,/roles
+819525545,,,2026-04-03T23:04:24+00:00,298,297,agent,"👥 Roles & groups
+App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+Note: Google USERS authorization matches Telegram @handles as text in usr_telegram_usrid (pipe-separated if several, e.g. user1|user2). Numeric Telegram user id is not used for that sheet.
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-03T23:04:37+00:00,299,,user,/profile 777777
+819525545,,,2026-04-03T23:04:37+00:00,300,299,agent,"❌ Error: Action 'scouts/remove/{short_id}' failed: Permission denied for action 'scouts/remove/{short_id}'. Required roles: ['management', 'owner']"
+819525545,muhdashe,MUHD,2026-04-03T23:07:11+00:00,301,,user,/revive
+819525545,,,2026-04-03T23:07:12+00:00,302,301,agent,"❌ Error: Action 'scouts/remove/{short_id}' failed: Permission denied for action 'scouts/remove/{short_id}'. Required roles: ['management', 'owner']"
+819525545,muhdashe,MUHD,2026-04-03T23:08:25+00:00,303,,user,/help
+819525545,,,2026-04-03T23:08:25+00:00,304,303,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /roles
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T23:08:35+00:00,305,,user,/rep_broad_mon_u dsfds
+819525545,,,2026-04-03T23:08:35+00:00,306,305,agent,"❌ Error: Action 'scouts/remove/{short_id}' failed: Permission denied for action 'scouts/remove/{short_id}'. Required roles: ['management', 'owner']"
+819525545,muhdashe,MUHD,2026-04-03T23:13:18+00:00,307,,user,/help
+819525545,,,2026-04-03T23:13:19+00:00,308,307,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str | None) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /roles
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-03T23:13:23+00:00,309,,user,/roles
+819525545,,,2026-04-03T23:13:23+00:00,310,309,agent,"👥 Roles & groups
+App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+Note: Google USERS authorization matches Telegram @handles as text in usr_telegram_usrid (pipe-separated if several, e.g. user1|user2). Numeric Telegram user id is not used for that sheet.
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-03T23:13:32+00:00,311,,user,/status
+819525545,,,2026-04-03T23:13:32+00:00,312,311,agent,"📋 Status
+✅ Authentication (google_sheets): OK
+✅ Storage (local_data): OK
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T23:13:43+00:00,313,,user,/profile 777777
+819525545,,,2026-04-03T23:13:43+00:00,314,313,agent,❌ Error: Action 'profiles/{short_id}' failed: Permission denied for action 'profiles/{short_id}'. Required roles: ['scout']
+819525545,muhdashe,MUHD,2026-04-03T23:28:43+00:00,315,,user,/status
+819525545,,,2026-04-03T23:28:44+00:00,316,315,agent,"📋 Status
+✅ Authentication (google_sheets): OK
+✅ Storage (local_data): OK
+❌ Live.me: No authenticated session"
+819525545,muhdashe,MUHD,2026-04-03T23:28:46+00:00,317,,user,/profile 777777
+819525545,,,2026-04-03T23:28:46+00:00,318,317,agent,❌ Error: Action execution failed: 'headers_authorization'
+819525545,muhdashe,MUHD,2026-04-03T23:28:58+00:00,319,,user,/roles
+819525545,,,2026-04-03T23:28:58+00:00,320,319,agent,"👥 Roles & groups
+App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+Note: Google USERS authorization matches Telegram @handles as text in usr_telegram_usrid (pipe-separated if several, e.g. user1|user2). Numeric Telegram user id is not used for that sheet.
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-03T23:29:10+00:00,321,,user,/profile 777777
+819525545,,,2026-04-03T23:29:10+00:00,322,321,agent,❌ Error: Action execution failed: 'headers_authorization'
+819525545,muhdashe,MUHD,2026-04-03T23:36:51+00:00,323,,user,/profile 777777
+819525545,,,2026-04-03T23:36:51+00:00,324,323,agent,"❌ Error: Action execution failed: Live.me agency 'RU-KARIZMA' is not authenticated (no API headers). Use VPN/DNS for the agency API host, set LIVEME_SERVER_API_URL / LIVEME_SERVER_ADMIN_URL if needed, complete OAuth login, then try again. /status shows Live.me session state."
+819525545,muhdashe,MUHD,2026-04-03T23:40:19+00:00,325,,user,/revive
+819525545,,,2026-04-03T23:40:19+00:00,326,325,agent,"❌ Error: Action 'revive_auths' failed: Action validation failed | Operation: validation | Context: issues=[{'message': ""Input validation failed for parameter base_path: Value is null but nullable is False and type 'object' does not include 'null'""}] | Suggestion: Check the data structure against the schema definition"
+819525545,muhdashe,MUHD,2026-04-03T23:42:54+00:00,327,,user,/profile 777777
+819525545,,,2026-04-03T23:42:55+00:00,328,327,agent,❌ Error: Action execution failed: can't subtract offset-naive and offset-aware datetimes
+819525545,muhdashe,MUHD,2026-04-04T11:17:31+00:00,329,,user,/revive
+819525545,,,2026-04-04T11:17:31+00:00,330,329,agent,"{""success"": true, ""reloaded_count"": 2, ""platforms"": [""google"", ""liveme""], ""auths"": {""google"": [""kta""], ""liveme"": [""ru_karizma""]}, ""errors"": [], ""storage_used"": false}"
+819525545,muhdashe,MUHD,2026-04-04T11:17:45+00:00,331,,user,/profile 777777
+819525545,,,2026-04-04T11:17:46+00:00,332,331,agent,❌ Error: Action execution failed: 'EEU_CONT'
+819525545,muhdashe,MUHD,2026-04-04T11:18:08+00:00,333,,user,/roles
+819525545,,,2026-04-04T11:18:09+00:00,334,333,agent,"👥 Roles & groups
+App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+Note: Google USERS authorization matches Telegram @handles as text in usr_telegram_usrid (pipe-separated if several, e.g. user1|user2). Numeric Telegram user id is not used for that sheet.
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-04T11:23:25+00:00,335,,user,/help
+819525545,,,2026-04-04T11:23:25+00:00,336,335,agent,"🤖 karizma_assistant - Available Commands
+
+
+LMAM Commands:
+• /cont_send [scout, management]
+  Summary: Send contract to broadcaster
+  Description: Send a contract invitation to a broadcaster with full validation including profile checks, trial link validation, and telegram username verification
+  In: session (Session), sshortid (str), bshortid (str), btriallink (str), btelegram (str), usrtelegramusrid (str), usrtelegram_cmd (str)
+  Out: str
+• /profile [scout]
+  Summary: Get broadcaster profile summary
+  Description: Get detailed profile summary including contract eligibility analysis for a broadcaster by short ID
+  In: session (Session), short_id (str)
+  Out: str
+• /rep_broad_day_u [management, owner]
+  Summary: Update daily broadcasters reports
+  Description: Request, download and update daily reports for active broadcasters. Processes multiple dates concurrently and updates Google Sheets
+  In: session (Session), startdate (str), enddate (str), report_wait (str)
+  Out: str
+• /rep_broad_mon_u [management, owner]
+  Summary: Update monthly broadcasters report
+  Description: Request, download and update monthly report for active broadcasters. Automatically updates Google Sheets with report data
+  In: session (Session), year_month (str)
+  Out: str
+• /rep_broad_request [management, owner]
+  Summary: Request broadcasters report
+  Description: Request a report generation task for active broadcasters within a date range. Returns task ID for tracking report generation status
+  In: session (Session), datefrom (str), dateto (str)
+  Out: str
+• /revive [admin, owner]
+  Summary: Revive authentication configurations
+  Description: Reload all authentication configurations from local path or xwstorage. This reloads auth configs.
+  In: basepath (str) [optional], usestorage (bool) [optional]
+  Out: dict
+• /scout_add [management, owner]
+  Summary: Add scout
+  Description: Add a scout to the system by short ID. Updates both SCOUTS sheet and USERS sheet with scout information
+  In: session (Session), shortid (str), telegramusername (str)
+  Out: str
+• /scout_remove [management, owner]
+  Summary: Remove scout
+  Description: Remove a scout from the system by short ID. Updates SCOUTS sheet and reloads users list
+  In: session (Session), short_id (str)
+  Out: str
+
+General Commands:
+• /roles
+• /status
+
+*Use /help to see this message again.*"
+819525545,muhdashe,MUHD,2026-04-04T11:23:53+00:00,337,,user,/roles
+819525545,,,2026-04-04T11:23:53+00:00,338,337,agent,"👥 Roles & groups
+App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+Note: Google USERS authorization matches Telegram @handles as text in usr_telegram_usrid (pipe-separated if several, e.g. user1|user2). Numeric Telegram user id is not used for that sheet.
+
+Telegram groups/channels (only chats where you messaged this bot; the API cannot list every group you are in):
+• (none recorded yet — use the bot in a group with @mention, or /roles again after.)
+
+Telegram: @muhdashe — user id 819525545"
+819525545,muhdashe,MUHD,2026-04-04T11:24:07+00:00,339,,user,/profile 777777
+819525545,,,2026-04-04T11:24:08+00:00,340,339,agent,"*👑MUHD🧔🏻👑 Profile*
+
+*Phone Number*: Does not Exist
+*Phone Model*: SM-S928B
+*ID*: 777777
+*Long ID*: 799184658352177152
+*Blvl*: 42
+*Ulvl*: 97
+*Vlvl*: 19
+*DOB*: 1984-11-18
+*Country*: United Arab Emirates (the)
+*Email*: Does not Exist
+*Joined*: 1970-01-18 02:56:44.245000+00:00
+*Reg. Days*: 20530.35
+*Last Act. Time*: 1970-01-21 12:31:06.939000+00:00
+
+*👑MUHD🧔🏻👑 Profile Join Analysis*
+
+-0pt Old broadcaster because 20530.35 days > 30 days
++1pt - Broadcaster has no agency
+-0pt Broadcaster country is outside agency countries
+1/3pt - Sorry 🚨 Agency CANNOT contract this profile ❎"
+819525545,muhdashe,MUHD,2026-04-04T11:24:32+00:00,341,,user,/cont_send
+819525545,,,2026-04-04T11:24:32+00:00,342,341,agent,"❌ Error: Action execution failed: LiveMeAgent.contract_send() missing 6 required positional arguments: 's_short_id', 'b_short_id', 'b_trial_link', 'b_telegram', 'usr_telegram_usrid', and 'usr_telegram_cmd'"
+470324669,angelina_yas1,Angelina,2026-04-04T11:25:22+00:00,343,,user,/profile 777777
+470324669,,,2026-04-04T11:25:33+00:00,344,343,agent,❌ Access denied. Required roles: scout
+819525545,muhdashe,MUHD,2026-04-04T14:15:35+00:00,345,,user,/help
+819525545,,,2026-04-04T14:15:36+00:00,346,345,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: session:Session, sshortid:str, bshortid:str, btriallink:str, btelegram:str, usrtelegramusrid:str, usrtelegram_cmd:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: session:Session, short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒management, owner
+   args: session:Session, startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒management, owner
+   args: session:Session, year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒management, owner
+   args: session:Session, datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: session:Session, shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: session:Session, short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+819525545,muhdashe,MUHD,2026-04-04T14:16:07+00:00,347,,user,/start
+819525545,,,2026-04-04T14:16:08+00:00,348,347,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: session:Session, sshortid:str, bshortid:str, btriallink:str, btelegram:str, usrtelegramusrid:str, usrtelegram_cmd:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: session:Session, short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒management, owner
+   args: session:Session, startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒management, owner
+   args: session:Session, year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒management, owner
+   args: session:Session, datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: session:Session, shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: session:Session, short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+819525545,muhdashe,MUHD,2026-04-04T14:16:13+00:00,349,,user,/cont_send
+819525545,,,2026-04-04T14:16:13+00:00,350,349,agent,"⚠️ Command failed
+
+Action execution failed: LiveMeAgent.contract_send() missing 6 required positional arguments: 's_short_id', 'b_short_id', 'b_trial_link', 'b_telegram', 'usr_telegram_usrid', and 'usr_telegram_cmd'"
+819525545,muhdashe,MUHD,2026-04-04T14:17:14+00:00,351,,user,/status
+819525545,,,2026-04-04T14:17:15+00:00,352,351,agent,"📋 Bot status
+
+🤖 karizma_assistant
+
+▸ lmam
+  ✅ Authentication (google_sheets) — OK
+  ✅ Storage (local_data) — OK
+  ✅ Live.me — Connected (RU-KARIZMA authenticated)
+  ✅ Authentication (LMAM) — Live.me: RU-KARIZMA"
+819525545,muhdashe,MUHD,2026-04-04T14:17:30+00:00,353,,user,/roles
+819525545,,,2026-04-04T14:17:31+00:00,354,353,agent,"👥 Roles & groups
+
+✅ App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+
+📝 Google USERS sheet matches Telegram @handles in usr_telegram_usrid (pipe-separated if several). Numeric user id is not used for that column.
+
+💬 Groups you used with this bot (Telegram cannot list every group you are in)
+• None recorded yet — message the bot in a group (or @mention), then run /roles again.
+
+🪪 Telegram: @muhdashe — id 819525545"
+819525545,muhdashe,MUHD,2026-04-04T14:17:45+00:00,355,,user,/revive
+819525545,,,2026-04-04T14:17:46+00:00,356,355,agent,"{""success"": true, ""reloaded_count"": 2, ""platforms"": [""google"", ""liveme""], ""auths"": {""google"": [""kta""], ""liveme"": [""ru_karizma""]}, ""errors"": [], ""storage_used"": false}"
+470324669,angelina_yas1,Angelina,2026-04-04T14:52:33+00:00,357,,user,/profile 777777
+470324669,,,2026-04-04T14:52:48+00:00,360,357,agent,"🔒 Access denied
+
+Needed roles: scout
+Tip: check Google sheet / authorizer mapping for your Telegram @username."
+819525545,muhdashe,MUHD,2026-04-04T14:52:34+00:00,358,,user,/revive
+819525545,,,2026-04-04T14:52:50+00:00,361,358,agent,"Revive — what the bot checked
+
+For each item below we try in order:
+  1) Reconnect — use configs/tokens already on disk or an existing live session.
+  2) Re-authenticate — login or token refresh if reconnect is not enough.
+  3) If something still fails, the error is shown under that item.
+
+[1] Configuration files (xwauth / config.json reload)
+   Result: OK — loaded 2 config(s) across 2 platform(s).
+   google: kta
+   liveme: ru_karizma
+
+[2] Saved tokens — platform «google», account «kta»
+   Reconnect: no token file yet.
+   Re-authenticate: sign in or refresh so token.json can be written.
+
+[3] Saved tokens — platform «liveme», account «ru_karizma»
+   Reconnect: no token file yet.
+   Re-authenticate: sign in or refresh so token.json can be written.
+
+[4] Live.me agency API (active HTTP session)
+   Reload agency data from disk so in-memory sessions match token files.
+   Reconnect: agency JSON loaded OK.
+
+   Agency «RU-KARIZMA»
+   Reconnect: OK — Live.me API accepted the current session.
+
+   Saved agency and session state to disk after Live.me checks.
+
+End of revive."
+819525545,muhdashe,MUHD,2026-04-04T14:52:47+00:00,359,,user,/help
+819525545,,,2026-04-04T14:52:50+00:00,362,359,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: session:Session, sshortid:str, bshortid:str, btriallink:str, btelegram:str, usrtelegramusrid:str, usrtelegram_cmd:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: session:Session, short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒management, owner
+   args: session:Session, startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒management, owner
+   args: session:Session, year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒management, owner
+   args: session:Session, datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: session:Session, shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: session:Session, short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+819525545,muhdashe,MUHD,2026-04-04T14:55:31+00:00,363,,user,/revive
+819525545,,,2026-04-04T14:55:33+00:00,364,363,agent,"Revive — what the bot checked
+
+For each item below we try in order:
+  1) Reconnect — use configs/tokens already on disk or an existing live session.
+  2) Re-authenticate — login or token refresh if reconnect is not enough.
+  3) If something still fails, the error is shown under that item.
+
+[1] Configuration files (xwauth / config.json reload)
+   Result: OK — loaded 2 config(s) across 2 platform(s).
+   google: kta
+   liveme: ru_karizma
+
+[2] Saved tokens — platform «google», account «kta»
+   Reconnect: no token file yet.
+   Re-authenticate: sign in or refresh so token.json can be written.
+
+[3] Saved tokens — platform «liveme», account «ru_karizma»
+   Reconnect: no token file yet.
+   Re-authenticate: sign in or refresh so token.json can be written.
+
+[4] Live.me agency API (active HTTP session)
+   Reload agency data from disk so in-memory sessions match token files.
+   Reconnect: agency JSON loaded OK.
+
+   Agency «RU-KARIZMA»
+   Reconnect: OK — Live.me API accepted the current session.
+
+   Saved agency and session state to disk after Live.me checks.
+
+End of revive."
+819525545,muhdashe,MUHD,2026-04-04T14:57:18+00:00,365,,user,/help
+819525545,,,2026-04-04T14:57:19+00:00,366,365,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: session:Session, sshortid:str, bshortid:str, btriallink:str, btelegram:str, usrtelegramusrid:str, usrtelegram_cmd:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: session:Session, short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒management, owner
+   args: session:Session, startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒management, owner
+   args: session:Session, year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒management, owner
+   args: session:Session, datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: session:Session, shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: session:Session, short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+470324669,angelina_yas1,Angelina,2026-04-04T14:57:27+00:00,367,,user,/profile 777777
+470324669,,,2026-04-04T14:57:31+00:00,368,367,agent,"🔒 Access denied
+
+Needed roles: scout
+Tip: check Google sheet / authorizer mapping for your Telegram @username."
+819525545,muhdashe,MUHD,2026-04-04T14:57:36+00:00,369,,user,/roles
+819525545,,,2026-04-04T14:57:36+00:00,370,369,agent,"👥 Roles & groups
+
+✅ App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+
+📝 Google USERS sheet matches Telegram @handles in usr_telegram_usrid (pipe-separated if several). Numeric user id is not used for that column.
+
+💬 Groups you used with this bot (Telegram cannot list every group you are in)
+• None recorded yet — message the bot in a group (or @mention), then run /roles again.
+
+🪪 Telegram: @muhdashe — id 819525545"
+470324669,angelina_yas1,Angelina,2026-04-04T14:57:52+00:00,371,,user,/roles
+470324669,,,2026-04-04T14:57:52+00:00,372,371,agent,"👥 Roles & groups
+
+✅ App / LMAM roles: anyone
+
+📝 Google USERS sheet matches Telegram @handles in usr_telegram_usrid (pipe-separated if several). Numeric user id is not used for that column.
+
+💬 Groups you used with this bot (Telegram cannot list every group you are in)
+• None recorded yet — message the bot in a group (or @mention), then run /roles again.
+
+🪪 Telegram: @angelina_yas1 — id 470324669"
+470324669,angelina_yas1,Angelina,2026-04-04T15:07:33+00:00,373,,user,/profile 777777
+470324669,,,2026-04-04T15:07:36+00:00,374,373,agent,"*👑MUHD🧔🏻👑 Profile*
+
+*Phone Number*: Does not Exist
+*Phone Model*: SM-S928B
+*ID*: 777777
+*Long ID*: 799184658352177152
+*Blvl*: 42
+*Ulvl*: 97
+*Vlvl*: 19
+*DOB*: 1984-11-18
+*Country*: United Arab Emirates (the)
+*Email*: Does not Exist
+*Joined*: 1970-01-18 02:56:44.245000+00:00
+*Reg. Days*: 20530.51
+*Last Act. Time*: 1970-01-21 12:31:06.939000+00:00
+
+*👑MUHD🧔🏻👑 Profile Join Analysis*
+
+-0pt Old broadcaster because 20530.51 days > 30 days
++1pt - Broadcaster has no agency
+-0pt Broadcaster country is outside agency countries
+1/3pt - Sorry 🚨 Agency CANNOT contract this profile ❎"
+470324669,angelina_yas1,Angelina,2026-04-04T15:08:59+00:00,375,,user,/rep_broad_mon_u 2026-04
+470324669,,,2026-04-04T15:08:59+00:00,376,375,agent,"🔒 Access denied
+
+Needed roles: management, owner
+Tip: check Google sheet / authorizer mapping for your Telegram @username."
+470324669,angelina_yas1,Angelina,2026-04-04T15:11:02+00:00,377,,user,/cont_send 777777 @muhdashe
+470324669,,,2026-04-04T15:11:02+00:00,378,377,agent,"⚠️ Command failed
+
+Action execution failed: LiveMeAgent.contract_send() missing 4 required positional arguments: 'b_trial_link', 'b_telegram', 'usr_telegram_usrid', and 'usr_telegram_cmd'"
+470324669,angelina_yas1,Angelina,2026-04-04T15:17:48+00:00,379,,user,/cont_send 207414382 https://www.lm.ink/EJ7XLjZwnzBjW @kikka_la_kikka
+470324669,,,2026-04-04T15:17:54+00:00,380,379,agent,"❌ Error: Could not send to Short ID 207414382
+
+📊 👑KRIS.MP4 — contract eligibility
+
+-0pt Old broadcaster because 20527.13 days > 30 days
+-0pt Broadcaster is already in an agency. Union ID(940)
++1pt - Broadcaster country is acceptable
+😉 Broadcaster already in agency"
+470324669,angelina_yas1,Angelina,2026-04-04T15:20:08+00:00,381,,user,/rep_broad_mon_u 2026-04
+470324669,,,2026-04-04T15:21:11+00:00,382,381,agent,"⚠️ Command failed
+
+Action execution failed: unhashable type: 'list'"
+470324669,angelina_yas1,Angelina,2026-04-04T15:22:27+00:00,383,,user,/help
+470324669,,,2026-04-04T15:22:28+00:00,384,383,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: session:Session, context:dict, bshortid:str, btriallink:str, b_telegram:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: session:Session, short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒scout, management, owner
+   args: session:Session, startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒scout, management, owner
+   args: session:Session, year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒scout, management, owner
+   args: session:Session, datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: session:Session, shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: session:Session, short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+470324669,angelina_yas1,Angelina,2026-04-04T15:57:35+00:00,387,,user,/cancel
+470324669,,,2026-04-04T15:57:43+00:00,388,387,agent,ℹ️ No in-progress commands to cancel for you.
+470324669,angelina_yas1,Angelina,2026-04-04T16:07:29+00:00,389,,user,/rep_broad_mon_u 2026-04
+470324669,,,2026-04-04T16:08:38+00:00,390,389,agent,"⚠️ Command failed
+
+Action execution failed: unhashable type: 'list'"
+819525545,muhdashe,MUHD,2026-04-04T16:16:59+00:00,391,,user,/rep_broad_mon_u 2026-04
+819525545,,,2026-04-04T16:18:01+00:00,394,391,agent,"⚠️ Command failed
+
+Action execution failed: unhashable type: 'list'"
+819525545,muhdashe,MUHD,2026-04-04T16:17:07+00:00,392,,user,/help
+819525545,,,2026-04-04T16:18:01+00:00,395,392,agent,"📖 karizmaassistant
+
+Commands use a slash. Locked commands need the right role in the sheet._
+
+⚡ Quick
+/help — this list
+/start — welcome / setup
+/cancel — stop your in-progress commands (this account)
+/cancel_all — stop every in-progress command 🔒owner, management (not scouts)
+
+🧩 lmam
+/cont_send — Send contract to broadcaster 🔒scout, management
+   args: bshortid:str, btriallink:str, b_telegram:str · → str
+/profile — Get broadcaster profile summary 🔒scout
+   args: short_id:str · → str
+/rep_broad_day_u — Update daily broadcasters reports 🔒scout, management, owner
+   args: startdate:str, enddate:str, report_wait:str · → str
+/rep_broad_mon_u — Update monthly broadcasters report 🔒scout, management, owner
+   args: year_month:str · → str
+/rep_broad_request — Request broadcasters report 🔒scout, management, owner
+   args: datefrom:str, dateto:str · → str
+/revive — Revive authentication configurations 🔒admin, owner
+   args: basepath:str?, usestorage:bool? · → dict
+/scout_add — Add scout 🔒management, owner
+   args: shortid:str, telegramusername:str · → str
+/scout_remove — Remove scout 🔒management, owner
+   args: short_id:str · → str
+
+📎 Other commands
+/roles
+/status
+
+💡 Send /help anytime."
+819525545,muhdashe,MUHD,2026-04-04T16:17:31+00:00,393,,user,/roles
+819525545,,,2026-04-04T16:18:01+00:00,396,393,agent,"👥 Roles & groups
+
+✅ App / LMAM roles: anyone, broadcaster, scout, management, admin, owner
+
+📝 Google USERS sheet matches Telegram @handles in usr_telegram_usrid (pipe-separated if several). Numeric user id is not used for that column.
+
+💬 Groups you used with this bot (Telegram cannot list every group you are in)
+• None recorded yet — message the bot in a group (or @mention), then run /roles again.
+
+🪪 Telegram: @muhdashe — id 819525545"
+819525545,muhdashe,MUHD,2026-04-04T16:18:20+00:00,397,,user,/rep_broad_mon_u 2026-04
+819525545,,,2026-04-04T16:19:22+00:00,398,397,agent,"⚠️ Command failed
+
+Action execution failed: unhashable type: 'list'"

@@ -1,0 +1,128 @@
+Metadata-Version: 2.4
+Name: exonware-xwchat
+Version: 0.0.1.0
+Summary: Chat agent framework for the eXonware ecosystem
+Author: eXonware Backend Team
+License: Apache-2.0
+Project-URL: Homepage, https://github.com/exonware/xwchat
+Project-URL: Documentation, https://github.com/exonware/xwchat/docs
+Project-URL: Repository, https://github.com/exonware/xwchat
+Project-URL: Issues, https://github.com/exonware/xwchat/issues
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: exonware-xwsystem
+Provides-Extra: lazy
+Requires-Dist: exonware-xwlazy; extra == "lazy"
+Requires-Dist: exonware-xwsystem[lazy]; extra == "lazy"
+Provides-Extra: api
+Requires-Dist: fastapi>=0.104.0; extra == "api"
+Requires-Dist: uvicorn[standard]>=0.24.0; extra == "api"
+Provides-Extra: full
+Requires-Dist: exonware-xwsystem[full]; extra == "full"
+Requires-Dist: fastapi>=0.104.0; extra == "full"
+Requires-Dist: uvicorn[standard]>=0.24.0; extra == "full"
+Requires-Dist: beautifulsoup4>=4.9.0; extra == "full"
+Requires-Dist: discord.py>=2.0; extra == "full"
+Requires-Dist: google-auth>=2.23.0; extra == "full"
+Requires-Dist: line-bot-sdk>=3.0; extra == "full"
+Requires-Dist: python-telegram-bot>=20.0; extra == "full"
+Requires-Dist: wsaccel; extra == "full"
+Provides-Extra: dev
+Requires-Dist: exonware-xwchat[full]; extra == "dev"
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.20.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Dynamic: license-file
+
+# xwchat
+
+**One agent, many chat networks.** Telegram, WhatsApp, Instagram, and others behind one typed API. Chat UX lives here; heavy bot automation is aimed at xwbots. Docs in `docs/`.
+
+*Details: [README_LONG.md](README_LONG.md).*
+
+**Company:** eXonware.com · **Author:** eXonware Backend Team · **Email:** connect@exonware.com  
+
+[![Status](https://img.shields.io/badge/status-alpha-orange.svg)](https://exonware.com)
+[![Python](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
+---
+
+## Install
+
+```bash
+pip install exonware-xwchat
+pip install exonware-xwchat[lazy]
+pip install exonware-xwchat[full]
+```
+
+---
+
+## Quick start
+
+```python
+from exonware.xwchat import XWChatAgent, Telegram
+
+chat_agent = XWChatAgent(name="MyAgent", title="My Chat Agent", description="A helpful chat agent")
+chat_agent.providers(Telegram("YOUR_TELEGRAM_API_TOKEN"))
+await chat_agent["telegram"].send_message("user_id", "Hi there!")
+```
+
+See [docs/](docs/) for the fluent API, multiple providers, and `REF_*` when present.
+
+---
+
+## What you get
+
+| Area | What's in it |
+|------|----------------|
+| **Providers** | Telegram, WhatsApp, Instagram (and more); one API. |
+| **Interface** | Protocol-based (`IChatAgent`); typed; easy to extend. |
+| **Scope** | Chat flows; bot frameworks in xwbots. |
+
+---
+
+## Ecosystem functional contributions
+
+`xwchat` provides channel abstraction; sibling libraries handle automation logic, AI generation, persistence, and shared runtime behavior.
+You can use `xwchat` standalone for multi-provider chat integration without the full XW stack.
+Additional ecosystem modules are optional and most useful for enterprise and mission-critical chat platforms that need fully self-managed automation, identity, and data infrastructure.
+
+| Supporting XW lib | What it provides to xwchat | Functional requirement it satisfies |
+|------|----------------|----------------|
+| **XWAI** | AI response generation and command interpretation integration for chat flows. | Intelligent conversational behavior across channels. |
+| **XWBots / XWAction** | Bot-command and action execution orchestration on incoming chat events. | Structured automation and tool execution from chat interactions. |
+| **XWStorage** | Persistent conversation state, session context, and message history backends. | Durable multi-session chat behavior and replayability. |
+| **XWEntity** | Domain-aware identity/contact/user profile linkage in chat workflows. | Consistent user/domain mapping across channels and backend services. |
+| **XWAuth** | AuthN/AuthZ boundaries for protected chat operations and agent actions. | Secure chat-triggered operations in multi-tenant environments. |
+| **XWSystem** | Shared async/runtime/logging/config/security utilities. | Stable cross-provider operations and lower integration overhead. |
+
+Competitive edge: one chat surface can participate in the full action/AI/domain stack instead of being a siloed messaging adapter.
+
+---
+
+## Docs and tests
+
+- **Start:** [docs/INDEX.md](docs/INDEX.md) or [docs/](docs/).
+- **Tests:** From repo root, follow the project's test layout.
+
+---
+
+## License and links
+
+Apache-2.0 - see [LICENSE](LICENSE). **Homepage:** https://exonware.com · **Repository:** https://github.com/exonware/xwchat  
+
+
+## Async Support
+
+<!-- async-support:start -->
+- xwchat includes asynchronous execution paths in production code.
+- Source validation: 219 async def definitions and 295 await usages under src/.
+- Use async APIs for I/O-heavy or concurrent workloads to improve throughput and responsiveness.
+<!-- async-support:end -->
+
+
+Version: 0.0.1.0 | Updated: 29-Mar-2026
+
+*Built with ❤️ by eXonware.com - Revolutionizing Python Development Since 2025*
