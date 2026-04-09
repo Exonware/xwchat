@@ -5,7 +5,7 @@ XWChatAgent implementation.
 Company: eXonware.com
 Author: eXonware Backend Team
 Email: connect@exonware.com
-Version: 0.0.1.1
+Version: 0.0.1.2
 Generation Date: 07-Jan-2025
 """
 
@@ -60,12 +60,12 @@ class XWChatAgent(AChatAgent):
         if data_path:
             self._data_path = Path(data_path)
         else:
-            # Default: xwchat/data/xwchat
+            # Default: xwchat/.data/xwchat
             current_file = Path(__file__).resolve()
             # Go up from: xwchat/src/exonware/xwchat/agent.py
             # To: xwchat/
             xwchat_root = current_file.parent.parent.parent.parent
-            self._data_path = xwchat_root / "data" / "xwchat"
+            self._data_path = xwchat_root / ".data" / "xwchat"
         self._data_path = Path(self._data_path)
         # Set up storage connection
         self._storage_connection: Any | None = storage_connection

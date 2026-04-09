@@ -1,8 +1,286 @@
-.examples/
+﻿# =============================================================================
+# exonware monorepo — canonical .gitignore (Python + TypeScript + Rust + Go)
+# =============================================================================
+# Benchmark: every `.gitignore` in the monorepo (including repo root) matches this file.
+#
+# Local runtime / credentials / downloaded state: use a per-package `.data/`
+# directory (ignored below). Local examples / sandboxes: `.examples/`.
+#
+# If a venv was committed: git rm -r --cached path/to/.venv
 
-# Local private folders
+# -----------------------------------------------------------------------------
+# Private / local / vendored trees
+# -----------------------------------------------------------------------------
+.ci/
+.secrets/
 .secrets
-.references
-.venv
-.archive
+.references/
+.archive/
+.examples/
+.data/
 
+.archieve/
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+build/lib/
+build/lib64/
+
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+reports/
+
+*.mo
+*.pot
+
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.scrapy
+docs/_build/
+.pybuilder/
+
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+__pypackages__/
+.pdm.toml
+
+celerybeat-schedule
+celerybeat.pid
+
+*.sage.py
+
+.env
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+.spyderproject
+.spyproject
+.ropeproject
+
+/site
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+cython_debug/
+
+**/runner_out.md
+
+# -----------------------------------------------------------------------------
+# TypeScript / JavaScript (Node, bundlers, frameworks)
+# -----------------------------------------------------------------------------
+node_modules/
+dist-ssr/
+*.tsbuildinfo
+*.js.map
+.npm
+.eslintcache
+.stylelintcache
+.parcel-cache
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+.turbo/
+.vercel
+.netlify
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+coverage/
+.nyc_output/
+*.tgz
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+.pnpm-store/
+
+storybook-static/
+
+.vscode-test/
+
+# -----------------------------------------------------------------------------
+# Rust
+# -----------------------------------------------------------------------------
+# Build output (shared name with PyBuilder / other tools)
+target/
+
+**/*.rs.bk
+
+# -----------------------------------------------------------------------------
+# Go
+# -----------------------------------------------------------------------------
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+
+*.out
+
+vendor/
+
+# Delve / local debug binaries
+__debug_bin
+
+# -----------------------------------------------------------------------------
+# Terraform
+# -----------------------------------------------------------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+
+# -----------------------------------------------------------------------------
+# IDEs and editors
+# -----------------------------------------------------------------------------
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+
+.idea/
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+*~
+*.swp
+*.swo
+*tmp
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+*.vsix
+
+# -----------------------------------------------------------------------------
+# Operating systems
+# -----------------------------------------------------------------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# -----------------------------------------------------------------------------
+# Misc local / artifacts
+# -----------------------------------------------------------------------------
+*.bak
+*.backup
+*.tmp
+*.temp
+/logs/
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+*.sqlite
+*.sqlite3

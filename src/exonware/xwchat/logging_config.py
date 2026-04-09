@@ -6,7 +6,7 @@ Provides enable/disable and log level control for xwchat (env and API).
 Company: eXonware.com
 Author: eXonware Backend Team
 Email: connect@exonware.com
-Version: 0.0.1.1
+Version: 0.0.1.2
 """
 
 from __future__ import annotations

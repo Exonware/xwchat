@@ -148,21 +148,21 @@ class TelegramChatProvider(AChatProvider):
         if data_path:
             base_data_path = Path(data_path)
         else:
-            # Default: xwchat/data/xwchat
+            # Default: xwchat/.data/xwchat
             current_file = Path(__file__).resolve()
             # Go up from: xwchat/src/exonware/xwchat/providers/telegram.py
             # To: xwchat/
             xwchat_root = current_file.parent.parent.parent.parent.parent
-            base_data_path = xwchat_root / "data" / "xwchat"
+            base_data_path = xwchat_root / ".data" / "xwchat"
         # Set up storage path
         if storage_path:
             self._storage_path = Path(storage_path)
         else:
-            # Default: data/xwchat/{agent_id}/providers/telegram/users/saved_users.json
+            # Default: .data/xwchat/{agent_id}/providers/telegram/users/saved_users.json
             self._storage_path = base_data_path / self._agent_id / "providers" / "telegram" / "users" / "saved_users.json"
         # Set up message log path
         if self._enable_message_logging:
-            # data/xwchat/{agent_id}/providers/telegram/messages_log.csv
+            # .data/xwchat/{agent_id}/providers/telegram/messages_log.csv
             self._message_log_path = base_data_path / self._agent_id / "providers" / "telegram" / "messages_log.csv"
             # Ensure directory exists
             self._message_log_path.parent.mkdir(parents=True, exist_ok=True)

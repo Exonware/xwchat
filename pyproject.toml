@@ -1,4 +1,4 @@
-# Source size (src/*): ~304.5 KB
+# Source size (src/*): ~304.6 KB
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
