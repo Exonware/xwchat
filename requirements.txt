@@ -20,7 +20,7 @@
 
 # Core eXonware dependencies
 # Source size (src/*): ~304.6 KB
-exonware-xwsystem
+exonware-xwsystem==0.9.0.38
 
 # =============================================================================
 # OPTIONAL DEPENDENCIES (Install with [full] extra)
