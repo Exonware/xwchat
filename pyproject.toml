@@ -23,7 +23,7 @@ maintainers = []
 keywords = []
 classifiers = []
 dependencies = [
-  "exonware-xwsystem==0.9.0.38",
+  "exonware-xwsystem==0.9.0.39",
 ]
 
 [project.license]
@@ -33,13 +33,13 @@ text = "Apache-2.0"
 # First-party XW libs composed by this package (excludes exonware-xwsystem==0.9.0.37; see lazy/full).
 xw = []
 lazy = [
-  "exonware-xwchat[xw]==0.0.1.7",
-  "exonware-xwlazy==1.0.1.80",
-  "exonware-xwsystem[lazy]==0.9.0.38",
+  "exonware-xwchat[xw]==0.0.1.8",
+  "exonware-xwlazy==1.0.1.81",
+  "exonware-xwsystem[lazy]==0.9.0.39",
 ]
 full = [
-  "exonware-xwchat[xw]==0.0.1.7",
-  "exonware-xwsystem[full]==0.9.0.38",
+  "exonware-xwchat[xw]==0.0.1.8",
+  "exonware-xwsystem[full]==0.9.0.39",
   "fastapi>=0.104.0",
   "uvicorn[standard]>=0.24.0",
   "beautifulsoup4>=4.9.0",
@@ -50,7 +50,7 @@ full = [
   "wsaccel",
 ]
 dev = [
-  "exonware-xwchat[full]==0.0.1.7",
+  "exonware-xwchat[full]==0.0.1.8",
   "pytest>=7.0.0",
   "pytest-asyncio>=0.20.0",
   "pytest-cov>=4.0.0",
