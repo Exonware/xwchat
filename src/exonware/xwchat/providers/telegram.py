@@ -629,6 +629,35 @@ class TelegramChatProvider(AChatProvider):
         sanitized, md_kw = self.parse_from_md_format(str(response))
         return (sanitized, None, _merge_send_kwargs(md_kw))
 
+    def help_default_markup_transport_lines(self) -> list[str]:
+        """
+        Lines for :meth:`exonware.xwbots.bots.command_bot.XWBotCommand._build_help_default` / ``/help``.
+
+        Documents slash tokens handled here as *operator* controls (before the command bot runs).
+        Uses the same small markup dialect as xwbots help: *bold*, _italic_, `code`.
+        """
+        lines: list[str] = ["*🛰️ Transport (operators only)*"]
+        if not self._telegram_operator_user_ids:
+            lines.append(
+                "_These commands exist on this provider but are inactive until numeric Telegram user ids "
+                "are configured (constructor_ `telegram_operator_user_ids`_). "
+                "Karizma reads_ `KARIZMA_TELEGRAM_OPERATOR_IDS` _or_ `TELEGRAM_OPERATOR_USER_IDS` _by default._"
+            )
+            return lines
+        lines.extend(
+            [
+                "_Your Telegram user id is on the operator list; inbound handling and listener controls:_",
+                "`/pause` or `/stop` — pause inbound; user updates queue (FIFO) until resume",
+                "`/resume` or a lone `/start` _(operator, single token)_ — resume and drain the queue",
+                "`/restart` — stop the listener; restart the host process (systemd / scripts)",
+                "`/pending` — show paused-queue length and short previews",
+                "`/log_chat` _[n]_ — tail chat JSONL audit (default 40 lines, max 500)",
+                "`/log_status` _[n]_ — tail runtime status when `transport_runtime_tail` is wired",
+                "_Aliases like_ `/adm_pause`_,_ `/op_resume`_,_ `/svc_restart` _match the same actions._",
+            ]
+        )
+        return lines
+
     def _is_telegram_operator(self, user_id_str: str) -> bool:
         if not self._telegram_operator_user_ids:
             return False
