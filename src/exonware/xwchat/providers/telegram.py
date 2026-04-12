@@ -11,20 +11,24 @@ Group and channel listening:
 """
 
 from typing import Any, AsyncIterator, Callable
+from collections import deque
+import threading
 import asyncio
+import json
 import logging
 from exonware.xwsystem.io.serialization import JsonSerializer
 import os
 import signal
 import sys
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from exonware.xwsystem import get_logger
 from exonware.xwsystem.utils.web import extract_webpage_text
 from ..base import AChatProvider
 from ..defs import ChatCapability, ChatProviderType, MessageContext
 from ..errors import XWChatConnectionError, XWChatProviderError
+from ..telegram_format import merge_telegram_send_kwargs as _merge_send_kwargs
 logger = get_logger(__name__)
 # Standard imports - NO try/except!
 # These should be declared as dependencies in pyproject.toml
@@ -44,12 +48,28 @@ def _telegram_plain_from_entities(text: str) -> str:
     return html_module.unescape(t)
 
 
-def _merge_send_kwargs(send_kwargs: dict[str, Any]) -> dict[str, Any]:
-    """Defaults for long bot replies (Telegram Bot API)."""
-    out = dict(send_kwargs)
-    if out.get("parse_mode") and "disable_web_page_preview" not in out:
-        out["disable_web_page_preview"] = True
-    return out
+def _sanitize_telegram_markdown_help(text: str) -> str:
+    """
+    Escape patterns that commonly break Telegram ``Markdown`` entity parsing in /help output.
+
+    - Square-bracket role hints like ``[optional]`` must be escaped.
+    - Bare ``word_token`` identifiers with underscores (e.g. ``year_month``) are escaped
+      so Telegram does not treat ``_`` as italics markers.
+    """
+    import re
+
+    t = text or ""
+    for token in (
+        "[optional]",
+        "[management, owner]",
+        "[broadcaster]",
+    ):
+        if token in t:
+            esc = token.replace("[", r"\[").replace("]", r"\]")
+            t = t.replace(token, esc)
+    for name in ("year_month", "start_date", "end_date", "report_wait"):
+        t = re.sub(rf"\b{re.escape(name)}\b", name.replace("_", r"\_"), t)
+    return t
 
 
 def _strip_bot_mention(text: str, bot_username: str) -> str:
@@ -108,7 +128,27 @@ def user_exists(username: str) -> bool:
 class TelegramChatProvider(AChatProvider):
     """Telegram chat provider implementation."""
 
-    def __init__(self, api_token: str, bot_name: str | None = None, storage_path: str | None = None, auto_save_users: bool = True, agent_id: str | None = None, data_path: str | None = None, enable_message_logging: bool = True, storage_connection: Any | None = None, connection_cache_path: (str | Path) | None = None, proxy_url: str | None = None):
+    def __init__(
+        self,
+        api_token: str,
+        bot_name: str | None = None,
+        storage_path: str | None = None,
+        auto_save_users: bool = True,
+        agent_id: str | None = None,
+        data_path: str | None = None,
+        enable_message_logging: bool = True,
+        storage_connection: Any | None = None,
+        connection_cache_path: (str | Path) | None = None,
+        proxy_url: str | None = None,
+        *,
+        telegram_operator_user_ids: frozenset[int] | set[int] | tuple[int, ...] | None = None,
+        message_handler_concurrent: bool = True,
+        max_concurrent_handlers: int = 32,
+        enable_json_audit_log: bool = True,
+        transport_status_sink: Any | None = None,
+        transport_runtime_tail: Any | None = None,
+        max_paused_inbound_queue: int = 500,
+    ):
         """
         Initialize Telegram provider.
         Args:
@@ -124,6 +164,19 @@ class TelegramChatProvider(AChatProvider):
                 When set, the same connection id is reused after crash/restart (no conflicting connections).
             proxy_url: Optional HTTP(S) or SOCKS proxy URL for Telegram API (e.g. http://host:port or socks5://user:pass@host:port).
                 If not set, PTB uses ALL_PROXY / HTTPS_PROXY / HTTP_PROXY env vars. Use this if you get httpx.ConnectError when sending replies.
+            telegram_operator_user_ids: Telegram numeric user IDs allowed to run operator commands
+                (e.g. ``/pause`` / ``/stop``, ``/resume`` / ``/start``, ``/restart``, ``/pending``, ``/log_chat``, ``/log_status``).
+                Empty = disabled.
+            message_handler_concurrent: If True, each update is processed in a background asyncio task so one slow
+                handler does not block other chats (bounded by ``max_concurrent_handlers``).
+            max_concurrent_handlers: Semaphore limit when ``message_handler_concurrent`` is True.
+            enable_json_audit_log: Append rich per-message JSON lines to ``chat_audit.jsonl`` (in addition to CSV when enabled).
+            transport_status_sink: Optional async callable ``(status, message, **kwargs) -> None`` supplied by the host
+                application to record operator / transport lifecycle events; xwchat does not write those files itself.
+            transport_runtime_tail: Optional async callable ``(max_lines: int) -> str`` supplied by the host to tail
+                runtime status text for ``/log_status``; if omitted, ``/log_status`` explains that logging is not wired.
+            max_paused_inbound_queue: Max inbound updates queued while paused (non-operators); oldest is not evicted —
+                over-capacity sends receive a short reply instead of enqueueing.
         """
         if not api_token:
             raise XWChatProviderError("API token is required")
@@ -174,6 +227,24 @@ class TelegramChatProvider(AChatProvider):
             # PID file: data/xwchat/{agent_id}/providers/telegram/bot.pid
             self._pid_file = self._storage_path.parent.parent / "bot.pid"
         self._connection_id = self.get_connection_id(api_token)
+
+        ops = telegram_operator_user_ids or ()
+        self._telegram_operator_user_ids: frozenset[int] = frozenset(int(x) for x in ops)
+        self._message_handler_concurrent = bool(message_handler_concurrent)
+        self._max_concurrent_handlers = max(1, int(max_concurrent_handlers))
+        self._handler_semaphore = asyncio.Semaphore(self._max_concurrent_handlers)
+        self._processing_paused = False
+        self._enable_json_audit_log = bool(enable_json_audit_log)
+        self._transport_status_sink = transport_status_sink
+        self._transport_runtime_tail = transport_runtime_tail
+        self._paused_inbound_queue: deque[dict[str, Any]] = deque()
+        self._max_paused_inbound_queue = max(1, int(max_paused_inbound_queue))
+        self._paused_queue_lock = threading.Lock()
+
+        # Rich chat audit (JSONL) under xwchat agent tree: <base>/<agent_id>/logs/chat_audit.jsonl
+        self._chat_audit_jsonl_path = base_data_path / self._agent_id / "logs" / "chat_audit.jsonl"
+        self._chat_audit_jsonl_path.parent.mkdir(parents=True, exist_ok=True)
+
     @property
 
     def provider_type(self) -> ChatProviderType:
@@ -516,6 +587,649 @@ class TelegramChatProvider(AChatProvider):
         except Exception as e:
             logger.warning(f"Error removing PID file: {e}")
 
+    @staticmethod
+    def _utc_iso() -> str:
+        return datetime.now(timezone.utc).isoformat()
+
+    def get_audit_log_paths(self) -> dict[str, Path | None]:
+        """Paths for CSV + JSONL files owned by this transport (chat traffic only)."""
+        return {
+            "messages_csv": self._message_log_path,
+            "chat_audit_jsonl": getattr(self, "_chat_audit_jsonl_path", None),
+        }
+
+    def parse_from_md_format(self, text: str) -> tuple[str, dict[str, Any]]:
+        """Return (sanitized_text, send_kwargs) for Telegram ``Markdown`` parse mode."""
+        return (_sanitize_telegram_markdown_help(text or ""), {"parse_mode": "Markdown"})
+
+    def prepare_response_for_send(
+        self,
+        response: Any,
+    ) -> tuple[str | None, str | None, dict[str, Any]]:
+        """
+        Normalize a handler return value into ``(text, reply_to_message_id, send_kwargs)``.
+
+        Plain strings are treated as Markdown (Karizma / XWBotCommand help output). Tuples that
+        already specify ``parse_mode`` (e.g. HTML from /roles) are passed through unchanged aside
+        from default send kwargs (preview off when parse_mode is set).
+        """
+        if response is None:
+            return (None, None, {})
+        if isinstance(response, tuple):
+            text = response[0]
+            reply_to = response[1] if len(response) > 1 else None
+            kwargs = dict(response[2] if len(response) > 2 else {})
+            if kwargs.get("parse_mode"):
+                return (text, reply_to, _merge_send_kwargs(kwargs))
+            if text:
+                sanitized, md_kw = self.parse_from_md_format(str(text))
+                merged = {**md_kw, **kwargs}
+                return (sanitized, reply_to, _merge_send_kwargs(merged))
+            return (text, reply_to, _merge_send_kwargs(kwargs))
+        sanitized, md_kw = self.parse_from_md_format(str(response))
+        return (sanitized, None, _merge_send_kwargs(md_kw))
+
+    def _is_telegram_operator(self, user_id_str: str) -> bool:
+        if not self._telegram_operator_user_ids:
+            return False
+        try:
+            return int(user_id_str) in self._telegram_operator_user_ids
+        except ValueError:
+            return False
+
+    @staticmethod
+    def _command_token_from_text(text: str) -> str:
+        t = (text or "").strip().split(maxsplit=1)[0] if (text or "").strip() else ""
+        if t.startswith("/"):
+            t = t[1:]
+        if "@" in t:
+            t = t.split("@", 1)[0]
+        return t.lower()
+
+    @staticmethod
+    def _tail_line_count_from_command(text: str, default: int = 40, max_n: int = 500) -> int:
+        parts = (text or "").strip().split()
+        if len(parts) >= 2 and parts[1].isdigit():
+            return max(1, min(max_n, int(parts[1])))
+        return default
+
+    @staticmethod
+    def _truncate_telegram(s: str, limit: int = 3500) -> str:
+        s = s or ""
+        if len(s) <= limit:
+            return s
+        return s[: limit - 24] + "\n…(truncated)…"
+
+    async def _append_jsonl(self, path: Path, record: dict[str, Any]) -> None:
+        line = json.dumps(record, ensure_ascii=False, default=str) + "\n"
+
+        def _write() -> None:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with open(path, "a", encoding="utf-8") as f:
+                f.write(line)
+
+        await asyncio.to_thread(_write)
+
+    async def _log_chat_audit(
+        self,
+        *,
+        direction: str,
+        from_user_id: str,
+        from_username: str,
+        to_chat_id: str,
+        chat_type: str,
+        chat_title: str,
+        message_id: str,
+        reply_to_message_id: str,
+        body: str,
+        is_group: bool,
+        message_subtype: str | None = None,
+    ) -> None:
+        if not self._enable_json_audit_log:
+            return
+        rec: dict[str, Any] = {
+            "datetime": self._utc_iso(),
+            "direction": direction,
+            "from_user_id": from_user_id,
+            "from_username": from_username,
+            "to_chat_id": to_chat_id,
+            "chat_type": chat_type,
+            "chat_title": chat_title,
+            "message_id": message_id,
+            "reply_to_message_id": reply_to_message_id,
+            "text": body,
+            "is_group": is_group,
+        }
+        if message_subtype:
+            rec["message_subtype"] = message_subtype
+        await self._append_jsonl(self._chat_audit_jsonl_path, rec)
+
+    async def _emit_transport_status(
+        self,
+        status: str,
+        message: str,
+        *,
+        command: str = "",
+        args: str = "",
+        **extra: Any,
+    ) -> None:
+        cmd_l = (command or "").strip()
+        args_l = (args or "").strip()
+        sink = getattr(self, "_transport_status_sink", None)
+        if sink is not None:
+            try:
+                maybe = sink(status, message, command=cmd_l, args=args_l, **extra)
+                if asyncio.iscoroutine(maybe) or asyncio.isfuture(maybe):
+                    await maybe
+            except Exception as e:
+                logger.warning("%stransport_status_sink failed: %s", self._log_prefix(), e)
+        if cmd_l or args_l:
+            logger.info("%s%s | cmd=%r args=%r — %s", self._log_prefix(), status, cmd_l, args_l, message)
+        else:
+            logger.info("%s%s — %s", self._log_prefix(), status, message)
+
+    def _command_and_args_for_log(self, text: str) -> tuple[str, str]:
+        """First slash-token (without @bot suffix) + remainder; plain text → (message, excerpt)."""
+        t = (text or "").strip()
+        if not t:
+            return "", ""
+        if t.startswith("/"):
+            parts = t.split(maxsplit=1)
+            head = parts[0].split("@", 1)[0]
+            cmd = head[1:].lower() if head.startswith("/") else head.lower()
+            rest = parts[1].strip() if len(parts) > 1 else ""
+            return cmd, rest
+        return "(message)", t[:500]
+
+    async def _tail_text_file(self, path: Path, max_lines: int) -> str:
+        if not path.exists():
+            return ""
+
+        def _read() -> str:
+            lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+            return "\n".join(lines[-max_lines:])
+
+        return await asyncio.to_thread(_read)
+
+    async def _drain_paused_inbound_queue(self, bot_username: str, bot_id: int | None) -> None:
+        """Replay FIFO inbound updates captured while ``_processing_paused`` (non-operators)."""
+        with self._paused_queue_lock:
+            backlog = len(self._paused_inbound_queue)
+            if not backlog:
+                return
+        await self._emit_transport_status(
+            "drain_begin",
+            "paused_inbound_queue_replay",
+            command="",
+            args=str(backlog),
+        )
+        while True:
+            with self._paused_queue_lock:
+                if not self._paused_inbound_queue:
+                    break
+                item = self._paused_inbound_queue.popleft()
+            m = item.get("msg")
+            if m is None:
+                continue
+            t = item.get("text") or getattr(m, "text", None) or ""
+            c, a = self._command_and_args_for_log(t)
+            await self._emit_transport_status(
+                "replay_queued",
+                "replaying_inbound_from_pause_queue",
+                command=c,
+                args=a,
+                user_id=item.get("user_id_str", ""),
+                chat_id=item.get("chat_id_str", ""),
+            )
+            await self._process_incoming_text_update(m, bot_username, bot_id, replay_from_queue=True)
+        await self._emit_transport_status("drain_end", "paused_inbound_queue_empty", command="", args="")
+
+    async def _maybe_handle_privileged_telegram_commands(
+        self,
+        msg: Any,
+        *,
+        user_id_str: str,
+        command_text: str,
+        bot_username: str,
+        bot_id: int | None,
+    ) -> bool:
+        """
+        Operator-only: pause/resume (inbound), listener restart, log tails, paused-queue inspection.
+
+        Non-operators keep the usual Telegram /start behaviour from the registered downstream handler.
+        Operators may use a lone /start or /resume here to resume after /stop or /pause (single-token only).
+        """
+        if not self._is_telegram_operator(user_id_str):
+            return False
+
+        parts = (command_text or "").strip().split()
+        cmd = self._command_token_from_text(command_text)
+        stop_cmds = frozenset(
+            {
+                "stop",
+                "adm_stop",
+                "admin_stop",
+                "op_stop",
+                "svc_stop",
+                "pause",
+                "adm_pause",
+                "admin_pause",
+                "op_pause",
+                "svc_pause",
+            }
+        )
+        start_cmds = frozenset(
+            {
+                "start",
+                "adm_start",
+                "admin_start",
+                "op_start",
+                "svc_start",
+                "resume",
+                "adm_resume",
+                "admin_resume",
+                "op_resume",
+                "svc_resume",
+            }
+        )
+        restart_cmds = frozenset({"restart", "adm_restart", "admin_restart", "op_restart", "svc_restart"})
+        pending_cmds = frozenset({"pending", "adm_pending", "op_pending", "paused_queue"})
+
+        if cmd in stop_cmds:
+            if len(parts) != 1:
+                return False
+            self._processing_paused = True
+            await self._emit_transport_status(
+                "paused",
+                "operator_pause",
+                command=cmd,
+                args="",
+                operator_user_id=user_id_str,
+            )
+            await msg.reply_text(
+                "⏸️ Inbound handling paused.\n"
+                "User messages are queued (FIFO) and will run after an operator resumes.\n"
+                "Operators: /resume, /start, or /adm_start to resume. /pending shows the queue.",
+                disable_web_page_preview=True,
+            )
+            return True
+
+        if cmd in start_cmds:
+            if len(parts) != 1:
+                return False
+            self._processing_paused = False
+            await self._emit_transport_status(
+                "resumed",
+                "operator_resume",
+                command=cmd,
+                args="",
+                operator_user_id=user_id_str,
+            )
+            await msg.reply_text(
+                "▶️ Inbound handling resumed.\n"
+                "Queued user messages will be processed now (in order).\n"
+                "Note: for operators, a lone /start or /resume here is transport resume; send /help for the app list.",
+                disable_web_page_preview=True,
+            )
+            await self._drain_paused_inbound_queue(bot_username, bot_id)
+            return True
+
+        if cmd in restart_cmds:
+            if len(parts) != 1:
+                return False
+            await self._emit_transport_status(
+                "restart",
+                "operator_requested_listener_shutdown",
+                command=cmd,
+                args="",
+                operator_user_id=user_id_str,
+            )
+            await msg.reply_text(
+                "🔄 Stopping the Telegram listener now.\nRestart the process from your host (systemd / scripts/run).",
+                disable_web_page_preview=True,
+            )
+            asyncio.create_task(self._shutdown_listener())
+            return True
+
+        if cmd in pending_cmds:
+            if len(parts) != 1:
+                return False
+            with self._paused_queue_lock:
+                n = len(self._paused_inbound_queue)
+                snapshot = list(self._paused_inbound_queue)[:25]
+            lines = [f"Inbound queue while paused: {n} item(s)."]
+            for i, it in enumerate(snapshot):
+                preview = (it.get("text") or "")[:200].replace("\n", " ")
+                uid = it.get("user_id_str", "")
+                lines.append(f"{i + 1}. user {uid}: {preview}")
+            await msg.reply_text(
+                self._truncate_telegram("\n".join(lines) if lines else "(empty)"),
+                disable_web_page_preview=True,
+            )
+            await self._emit_transport_status(
+                "operator_pending",
+                "operator_view_pause_queue",
+                command=cmd,
+                args=str(n),
+                operator_user_id=user_id_str,
+            )
+            return True
+
+        if cmd == "log_chat":
+            n = self._tail_line_count_from_command(command_text, default=40, max_n=500)
+            body = await self._tail_text_file(self._chat_audit_jsonl_path, n)
+            await msg.reply_text(self._truncate_telegram(body or "(empty log)"), disable_web_page_preview=True)
+            await self._emit_transport_status(
+                "operator_log_chat",
+                "operator_tailed_chat_audit_jsonl",
+                command=cmd,
+                args=str(n),
+                operator_user_id=user_id_str,
+            )
+            return True
+
+        if cmd in ("log_status", "log_runtime"):
+            n = self._tail_line_count_from_command(command_text, default=40, max_n=500)
+            tail = getattr(self, "_transport_runtime_tail", None)
+            if tail is None:
+                await msg.reply_text(
+                    "(Runtime status log is not wired: pass transport_runtime_tail from the host application.)",
+                    disable_web_page_preview=True,
+                )
+                await self._emit_transport_status(
+                    "operator_log_status",
+                    "operator_tail_skipped_no_sink",
+                    command=cmd,
+                    args=str(n),
+                    operator_user_id=user_id_str,
+                )
+                return True
+            try:
+                maybe = tail(n)
+                if asyncio.iscoroutine(maybe) or asyncio.isfuture(maybe):
+                    body = await maybe
+                else:
+                    body = str(maybe)
+            except Exception as e:
+                body = f"(tail failed: {type(e).__name__}: {e})"
+            await msg.reply_text(self._truncate_telegram(body or "(empty log)"), disable_web_page_preview=True)
+            await self._emit_transport_status(
+                "operator_log_status",
+                "operator_tailed_runtime_status",
+                command=cmd,
+                args=str(n),
+                operator_user_id=user_id_str,
+            )
+            return True
+
+        return False
+
+    async def _process_incoming_text_update(
+        self,
+        msg: Any,
+        bot_username: str,
+        bot_id: int | None,
+        *,
+        replay_from_queue: bool = False,
+    ) -> None:
+        """Core Telegram text pipeline: logging, registered message handler, replies."""
+        text = msg.text or ""
+        raw_text = text
+        chat_type = getattr(msg.chat, "type", "")
+        is_group = chat_type in ("group", "supergroup")
+        is_channel = chat_type == "channel"
+        logger.info(
+            "%sIncoming message chat_id=%s chat_type=%s text_len=%s",
+            self._log_prefix(),
+            msg.chat.id,
+            chat_type,
+            len(text),
+        )
+        chat_id_str = str(msg.chat.id)
+        chat_type_str = str(chat_type) if chat_type is not None else ""
+        chat_title = getattr(msg.chat, "title", None) or ""
+        user_id_str = str(msg.from_user.id) if msg.from_user else ""
+        message_id_str = str(msg.message_id)
+        reply_to_msg = getattr(msg, "reply_to_message", None)
+        reply_to_id = str(reply_to_msg.message_id) if reply_to_msg else ""
+        username = (msg.from_user.username or "") if msg.from_user else ""
+
+        mentioned = False
+        if not is_group:
+            mentioned = True
+        else:
+            if getattr(msg, "entities", None):
+                for ent in msg.entities:
+                    etype = getattr(ent, "type", None)
+                    if etype == MessageEntity.MENTION:
+                        seg = (
+                            raw_text[ent.offset : ent.offset + ent.length]
+                            if (ent.offset is not None and ent.length is not None)
+                            else ""
+                        )
+                        if seg and seg.lstrip("@").lower() == (bot_username or "").lower():
+                            mentioned = True
+                            break
+                    if etype == MessageEntity.TEXT_MENTION and bot_id is not None:
+                        u = getattr(ent, "user", None)
+                        if u and getattr(u, "id", None) == bot_id:
+                            mentioned = True
+                            break
+            if not mentioned and bot_username and ("@" + bot_username).lower() in raw_text.lower():
+                mentioned = True
+        if is_group and not mentioned:
+            return
+
+        if bot_username and (is_group or is_channel):
+            text = _strip_bot_mention(text.strip(), bot_username)
+        else:
+            text = text.strip()
+
+        if await self._maybe_handle_privileged_telegram_commands(
+            msg,
+            user_id_str=user_id_str,
+            command_text=text,
+            bot_username=bot_username,
+            bot_id=bot_id,
+        ):
+            return
+        if self._processing_paused and not replay_from_queue and not self._is_telegram_operator(user_id_str):
+            c, a = self._command_and_args_for_log(text)
+            with self._paused_queue_lock:
+                overflow = len(self._paused_inbound_queue) >= self._max_paused_inbound_queue
+                if not overflow:
+                    self._paused_inbound_queue.append(
+                        {
+                            "msg": msg,
+                            "text": text,
+                            "user_id_str": user_id_str,
+                            "chat_id_str": chat_id_str,
+                        }
+                    )
+                    pos = len(self._paused_inbound_queue)
+            if overflow:
+                await self._emit_transport_status(
+                    "queue_full",
+                    "paused_inbound_queue_overflow",
+                    command=c,
+                    args=a,
+                    user_id=user_id_str,
+                    chat_id=chat_id_str,
+                )
+                await msg.reply_text(
+                    "The bot is paused and the inbound queue is full. Try again after an operator resumes the bot.",
+                    disable_web_page_preview=True,
+                )
+                return
+            await self._emit_transport_status(
+                "queued",
+                "inbound_queued_while_paused",
+                command=c,
+                args=a,
+                user_id=user_id_str,
+                chat_id=chat_id_str,
+                queue_position=pos,
+            )
+            await msg.reply_text(
+                "Received. The bot is paused; this will run after an operator resumes it.\n"
+                f"Queue position: {pos}.",
+                disable_web_page_preview=True,
+            )
+            return
+
+        ctx: MessageContext = {
+            "chat_id": chat_id_str,
+            "user_id": user_id_str,
+            "text": text,
+            "message_id": message_id_str,
+            "username": username,
+            "group": is_group,
+            "channel": False,
+            "mentioned": mentioned,
+            "channel_id": chat_id_str,
+            "group_id": chat_id_str if is_group else "",
+            "chat_type": chat_type_str,
+            "chat_title": str(chat_title) if chat_title else "",
+        }
+        if reply_to_id:
+            ctx["reply_to_message_id"] = reply_to_id
+            ctx["is_reply"] = True
+        ctx["help_format"] = "telegram_html"
+        message_data = {
+            "user_id": user_id_str,
+            "username": msg.from_user.username if msg.from_user else None,
+            "first_name": msg.from_user.first_name if msg.from_user else None,
+            "text": text,
+            "message_id": message_id_str,
+            "reply_to_message_id": reply_to_id,
+            "chat_id": chat_id_str,
+            "date": msg.date.isoformat() if msg.date else None,
+            "chat_type": chat_type_str,
+            "chat_title": str(chat_title) if chat_title else "",
+            "help_format": "telegram_html",
+        }
+
+        await self._log_chat_audit(
+            direction="in",
+            from_user_id=user_id_str,
+            from_username=username,
+            to_chat_id=chat_id_str,
+            chat_type=chat_type_str,
+            chat_title=str(chat_title) if chat_title else "",
+            message_id=message_id_str,
+            reply_to_message_id=reply_to_id,
+            body=text,
+            is_group=is_group,
+            message_subtype="user",
+        )
+
+        if self._enable_message_logging:
+            await self._log_message(
+                chat_id=chat_id_str,
+                username=message_data.get("username"),
+                first_name=message_data.get("first_name"),
+                message_id=message_id_str,
+                reply_to_message_id=reply_to_id,
+                message_type="user",
+                message=text,
+                datetime=message_data.get("date") or datetime.now().isoformat(),
+            )
+        if self._auto_save_users:
+            try:
+                await self._save_user_info(user_id_str, message_data)
+            except Exception as e:
+                logger.error("Error auto-saving user info: %s", e, exc_info=True)
+
+        response = self.invoke_message_handler(ctx)
+        if asyncio.iscoroutine(response):
+            response = await response
+        self.log_message_received(ctx, response is not None)
+        response_message = None
+        should_reply = bool(response) and (not is_group or mentioned)
+        if should_reply:
+            try:
+                resp_text, resp_reply_to, send_kwargs = self._normalize_response(response)
+                if resp_text:
+                    if bot_username and (is_group or is_channel):
+                        resp_text = _strip_bot_mention(resp_text, bot_username)
+                    if resp_text:
+                        reply_to_msg_id: int | None = None
+                        try:
+                            reply_to_msg_id = int(resp_reply_to or reply_to_id or message_id_str)
+                        except (ValueError, TypeError):
+                            pass
+                        send_kw = _merge_send_kwargs(send_kwargs)
+                        try:
+                            response_message = await msg.reply_text(
+                                resp_text, reply_to_message_id=reply_to_msg_id, **send_kw
+                            )
+                        except BadRequest as e:
+                            err = str(e).lower()
+                            if send_kw.get("parse_mode") and ("parse" in err or "entity" in err or "can't find" in err):
+                                logger.warning(
+                                    "%sFormatted reply rejected (%s); retrying as plain text.",
+                                    self._log_prefix(),
+                                    e,
+                                )
+                                plain = _telegram_plain_from_entities(resp_text)
+                                try:
+                                    response_message = await msg.reply_text(
+                                        plain[:4096],
+                                        reply_to_message_id=reply_to_msg_id,
+                                        disable_web_page_preview=True,
+                                    )
+                                except BadRequest as e2:
+                                    logger.error("%sPlain reply also failed: %s", self._log_prefix(), e2)
+                                    response_message = None
+                            else:
+                                logger.error("%sBadRequest sending reply: %s", self._log_prefix(), e)
+                                response_message = None
+                        except NetworkError as e:
+                            logger.warning(
+                                "%sCould not send reply (network): %s — check internet, firewall, or set proxy (HTTPS_PROXY / proxy_url).",
+                                self._log_prefix(),
+                                e,
+                            )
+                            response_message = None
+            except Exception as e:
+                logger.error("Error sending reply: %s", e)
+        elif not is_group and not self._message_handler:
+            response_message = await msg.reply_text(
+                f"You said: {text}",
+                reply_to_message_id=int(reply_to_id) if reply_to_id else None,
+            )
+
+        if response_message:
+            out_uid = str(bot_id) if bot_id is not None else ""
+            out_text = getattr(response_message, "text", "") or ""
+            await self._log_chat_audit(
+                direction="out",
+                from_user_id=out_uid,
+                from_username=bot_username or "",
+                to_chat_id=chat_id_str,
+                chat_type=chat_type_str,
+                chat_title=str(chat_title) if chat_title else "",
+                message_id=str(getattr(response_message, "message_id", "")),
+                reply_to_message_id=message_id_str,
+                body=out_text,
+                is_group=is_group,
+                message_subtype="agent",
+            )
+
+        if self._enable_message_logging and response_message:
+            await self._log_message(
+                chat_id=chat_id_str,
+                username=None,
+                first_name=None,
+                message_id=str(getattr(response_message, "message_id", "")),
+                reply_to_message_id=message_id_str,
+                message_type="agent",
+                message=getattr(response_message, "text", "") or "",
+                datetime=getattr(response_message, "date", None).isoformat()
+                if getattr(response_message, "date", None)
+                else datetime.now().isoformat(),
+            )
+
     async def start_listening(self) -> None:
         """
         Start listening for incoming messages and auto-respond if handler is set.
@@ -616,184 +1330,32 @@ class TelegramChatProvider(AChatProvider):
                 self._listening = False
 
         async def message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-            """Handle incoming messages (same structure as minimal echo: update.message + text)."""
-            # Match minimal working example: only proceed if we have message with text
+            """Handle incoming messages; may dispatch work concurrently so one slow handler does not block others."""
             if not (update.message and getattr(update.message, "text", None)):
                 return
             msg = update.message
-            text = msg.text or ""
-            raw_text = text
-            try:
-                chat_type = getattr(msg.chat, "type", "")
-                is_group = chat_type in ("group", "supergroup")
-                is_channel = chat_type == "channel"
-                self._polling_network_error_count = 0
-                logger.info(
-                    "%sIncoming message chat_id=%s chat_type=%s text_len=%s",
-                    self._log_prefix(),
-                    msg.chat.id,
-                    chat_type,
-                    len(text),
-                )
-                chat_id_str = str(msg.chat.id)
-                chat_type_str = str(chat_type) if chat_type is not None else ""
-                chat_title = getattr(msg.chat, "title", None) or ""
-                user_id_str = str(msg.from_user.id) if msg.from_user else ""
-                message_id_str = str(msg.message_id)
-                reply_to_msg = getattr(msg, "reply_to_message", None)
-                reply_to_id = str(reply_to_msg.message_id) if reply_to_msg else ""
-                username = (msg.from_user.username or "") if msg.from_user else ""
-                # Mention detection: DM always; group = entity + string check
-                mentioned = False
-                if not is_group:
-                    mentioned = True
-                else:
-                    if getattr(msg, "entities", None):
-                        for ent in msg.entities:
-                            etype = getattr(ent, "type", None)
-                            if etype == MessageEntity.MENTION:
-                                seg = raw_text[ent.offset : ent.offset + ent.length] if (ent.offset is not None and ent.length is not None) else ""
-                                if seg and seg.lstrip("@").lower() == (bot_username or "").lower():
-                                    mentioned = True
-                                    break
-                            if etype == MessageEntity.TEXT_MENTION and bot_id is not None:
-                                u = getattr(ent, "user", None)
-                                if u and getattr(u, "id", None) == bot_id:
-                                    mentioned = True
-                                    break
-                    if not mentioned and bot_username and ("@" + bot_username).lower() in raw_text.lower():
-                        mentioned = True
-                if is_group and not mentioned:
-                    return
-                # Strip @bot from text so handler gets clean text and we don't echo the mention in replies
-                if bot_username and (is_group or is_channel):
-                    text = _strip_bot_mention(text.strip(), bot_username)
-                else:
-                    text = text.strip()
-                ctx: MessageContext = {
-                    "chat_id": chat_id_str,
-                    "user_id": user_id_str,
-                    "text": text,
-                    "message_id": message_id_str,
-                    "username": username,
-                    "group": is_group,
-                    "channel": False,
-                    "mentioned": mentioned,
-                    "channel_id": chat_id_str,
-                    "group_id": chat_id_str if is_group else "",
-                    "chat_type": chat_type_str,
-                    "chat_title": str(chat_title) if chat_title else "",
-                }
-                if reply_to_id:
-                    ctx["reply_to_message_id"] = reply_to_id
-                    ctx["is_reply"] = True
-                ctx["help_format"] = "telegram_html"
-                message_data = {
-                    "user_id": user_id_str,
-                    "username": msg.from_user.username if msg.from_user else None,
-                    "first_name": msg.from_user.first_name if msg.from_user else None,
-                    "text": text,
-                    "message_id": message_id_str,
-                    "reply_to_message_id": reply_to_id,
-                    "chat_id": chat_id_str,
-                    "date": msg.date.isoformat() if msg.date else None,
-                    "chat_type": chat_type_str,
-                    "chat_title": str(chat_title) if chat_title else "",
-                    "help_format": "telegram_html",
-                }
-                if self._enable_message_logging:
-                    await self._log_message(
-                        chat_id=chat_id_str,
-                        username=message_data.get("username"),
-                        first_name=message_data.get("first_name"),
-                        message_id=message_id_str,
-                        reply_to_message_id=reply_to_id,
-                        message_type="user",
-                        message=text,
-                        datetime=message_data.get("date") or datetime.now().isoformat(),
-                    )
-                if self._auto_save_users:
-                    try:
-                        await self._save_user_info(user_id_str, message_data)
-                    except Exception as e:
-                        logger.error("Error auto-saving user info: %s", e, exc_info=True)
-                response = self.invoke_message_handler(ctx)
-                if asyncio.iscoroutine(response):
-                    response = await response
-                self.log_message_received(ctx, response is not None)
-                response_message = None
-                should_reply = bool(response) and (not is_group or mentioned)
-                if should_reply:
-                    try:
-                        resp_text, resp_reply_to, send_kwargs = self._normalize_response(response)
-                        if resp_text:
-                            if bot_username and (is_group or is_channel):
-                                resp_text = _strip_bot_mention(resp_text, bot_username)
-                            if resp_text:
-                                reply_to_msg_id: int | None = None
-                                try:
-                                    reply_to_msg_id = int(resp_reply_to or reply_to_id or message_id_str)
-                                except (ValueError, TypeError):
-                                    pass
-                                send_kw = _merge_send_kwargs(send_kwargs)
-                                try:
-                                    response_message = await msg.reply_text(
-                                        resp_text, reply_to_message_id=reply_to_msg_id, **send_kw
-                                    )
-                                except BadRequest as e:
-                                    err = str(e).lower()
-                                    if send_kw.get("parse_mode") and (
-                                        "parse" in err or "entity" in err or "can't find" in err
-                                    ):
-                                        logger.warning(
-                                            "%sFormatted reply rejected (%s); retrying as plain text.",
-                                            self._log_prefix(),
-                                            e,
-                                        )
-                                        plain = _telegram_plain_from_entities(resp_text)
-                                        try:
-                                            response_message = await msg.reply_text(
-                                                plain[:4096],
-                                                reply_to_message_id=reply_to_msg_id,
-                                                disable_web_page_preview=True,
-                                            )
-                                        except BadRequest as e2:
-                                            logger.error("%sPlain reply also failed: %s", self._log_prefix(), e2)
-                                            response_message = None
-                                    else:
-                                        logger.error("%sBadRequest sending reply: %s", self._log_prefix(), e)
-                                        response_message = None
-                                except NetworkError as e:
-                                    logger.warning(
-                                        "%sCould not send reply (network): %s — check internet, firewall, or set proxy (HTTPS_PROXY / proxy_url).",
-                                        self._log_prefix(),
-                                        e,
-                                    )
-                                    response_message = None
-                    except Exception as e:
-                        logger.error("Error sending reply: %s", e)
-                elif not is_group and not self._message_handler:
-                    response_message = await msg.reply_text(
-                        f"You said: {text}",
-                        reply_to_message_id=int(reply_to_id) if reply_to_id else None,
-                    )
-                if self._enable_message_logging and response_message:
-                    await self._log_message(
-                        chat_id=chat_id_str,
-                        username=None,
-                        first_name=None,
-                        message_id=str(getattr(response_message, "message_id", "")),
-                        reply_to_message_id=message_id_str,
-                        message_type="agent",
-                        message=getattr(response_message, "text", "") or "",
-                        datetime=getattr(response_message, "date", None).isoformat() if getattr(response_message, "date", None) else datetime.now().isoformat(),
-                    )
-            except asyncio.CancelledError:
-                raise
-            except Exception as e:
-                logger.exception("%sError handling message (chat_id=%s): %s", self._log_prefix(), getattr(msg, "chat", None) and getattr(msg.chat, "id", None), e)
+            self._polling_network_error_count = 0
 
-        # TEXT including commands (e.g. /weather, /repeat) so xwbots command handler can process them
+            async def work() -> None:
+                try:
+                    async with self._handler_semaphore:
+                        await self._process_incoming_text_update(msg, bot_username, bot_id)
+                except asyncio.CancelledError:
+                    raise
+                except Exception as e:
+                    logger.exception(
+                        "%sError handling message (chat_id=%s): %s",
+                        self._log_prefix(),
+                        getattr(msg, "chat", None) and getattr(msg.chat, "id", None),
+                        e,
+                    )
+
+            if self._message_handler_concurrent:
+                asyncio.create_task(work())
+            else:
+                await work()
+
+        # TEXT including commands so the application-registered handler can process them
         self._application.add_handler(MessageHandler(filters.TEXT, message_handler))
         logger.info(f"{self._log_prefix()}Started listening for messages with auto-response...")
         # Start the application with polling (async version for use within async context)
@@ -808,6 +1370,7 @@ class TelegramChatProvider(AChatProvider):
                 error_callback=_polling_error_callback,
             )
             logger.info(f"{self._log_prefix()}Bot is now listening for messages...")
+            await self._emit_transport_status("listener_up", "telegram_polling_started", command="", args="")
             # Keep running until interrupted
             try:
                 # Wait indefinitely (or until cancelled)

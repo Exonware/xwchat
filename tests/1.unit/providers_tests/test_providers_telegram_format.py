@@ -49,7 +49,8 @@ def test_prepare_response_for_send_plain_string(telegram_provider: TelegramChatP
     text, reply_to, kwargs = telegram_provider.prepare_response_for_send(md_text)
     assert text == md_text
     assert reply_to is None
-    assert kwargs == {"parse_mode": "Markdown"}
+    assert kwargs.get("parse_mode") == "Markdown"
+    assert kwargs.get("disable_web_page_preview") is True
 
 
 def test_prepare_response_for_send_does_not_reparse_when_handler_preformatted(
@@ -59,7 +60,8 @@ def test_prepare_response_for_send_does_not_reparse_when_handler_preformatted(
     preformatted = ("Preformatted <b>HTML</b>", None, {"parse_mode": "HTML"})
     text, reply_to, kwargs = telegram_provider.prepare_response_for_send(preformatted)
     assert text == "Preformatted <b>HTML</b>"
-    assert kwargs == {"parse_mode": "HTML"}
+    assert kwargs.get("parse_mode") == "HTML"
+    assert kwargs.get("disable_web_page_preview") is True
 
 
 def test_prepare_response_for_send_help_like_output(telegram_provider: TelegramChatProvider) -> None:
@@ -74,6 +76,7 @@ def test_prepare_response_for_send_help_like_output(telegram_provider: TelegramC
     )
     text, reply_to, kwargs = telegram_provider.prepare_response_for_send(help_like)
     assert kwargs.get("parse_mode") == "Markdown"
+    assert kwargs.get("disable_web_page_preview") is True
     assert "MyBot" in text
     assert "`/profile`" in text
     assert r"\[broadcaster\]" in text  # Escaped to avoid 'can'\''t find end of entity'
@@ -84,7 +87,8 @@ def test_prepare_response_for_send_error_message(telegram_provider: TelegramChat
     error_msg = "?O *Error executing command:*\nsome error details"
     text, reply_to, kwargs = telegram_provider.prepare_response_for_send(error_msg)
     assert text == error_msg
-    assert kwargs == {"parse_mode": "Markdown"}
+    assert kwargs.get("parse_mode") == "Markdown"
+    assert kwargs.get("disable_web_page_preview") is True
 
 
 def test_prepare_response_for_send_none(telegram_provider: TelegramChatProvider) -> None:

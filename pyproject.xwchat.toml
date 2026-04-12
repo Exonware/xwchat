@@ -1,4 +1,4 @@
-# Source size (src/*): ~304.6 KB
+# Source size (src/*): ~326.2 KB
 [build-system]
 requires = [
     "setuptools>=68.0",
