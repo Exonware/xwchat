@@ -12,7 +12,9 @@ Group and channel listening:
 
 from typing import Any, AsyncIterator, Callable
 from collections import deque
+from types import SimpleNamespace
 import threading
+import time
 import asyncio
 import json
 import logging
@@ -32,7 +34,15 @@ from ..telegram_format import merge_telegram_send_kwargs as _merge_send_kwargs
 logger = get_logger(__name__)
 # Standard imports - NO try/except!
 # These should be declared as dependencies in pyproject.toml
-from telegram import Bot, Update, MessageEntity
+from telegram import (
+    Bot,
+    BotCommand,
+    BotCommandScopeAllPrivateChats,
+    BotCommandScopeChatMember,
+    BotCommandScopeDefault,
+    Update,
+    MessageEntity,
+)
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 from telegram.error import BadRequest, TelegramError, NetworkError
 
@@ -234,12 +244,21 @@ class TelegramChatProvider(AChatProvider):
         self._max_concurrent_handlers = max(1, int(max_concurrent_handlers))
         self._handler_semaphore = asyncio.Semaphore(self._max_concurrent_handlers)
         self._processing_paused = False
+        # Cached from Telegram get_me() while listening (for programmatic resume / drain).
+        self._listener_bot_username: str = ""
+        self._listener_bot_id: int | None = None
         self._enable_json_audit_log = bool(enable_json_audit_log)
         self._transport_status_sink = transport_status_sink
         self._transport_runtime_tail = transport_runtime_tail
         self._paused_inbound_queue: deque[dict[str, Any]] = deque()
         self._max_paused_inbound_queue = max(1, int(max_paused_inbound_queue))
         self._paused_queue_lock = threading.Lock()
+        # Optional :class:`exonware.xwbots.bots.command_bot.XWBotCommand` for scoped ``setMyCommands`` + menu text.
+        self._xw_bot_command: Any | None = None
+        self._telegram_menu_last_sync: dict[tuple[int, int], tuple[float, str]] = {}
+        self._telegram_menu_min_interval_s = float(
+            (os.environ.get("XWCHAT_TELEGRAM_MENU_SYNC_INTERVAL_S") or "120").strip() or "120"
+        )
 
         # Rich chat audit (JSONL) under xwchat agent tree: <base>/<agent_id>/logs/chat_audit.jsonl
         self._chat_audit_jsonl_path = base_data_path / self._agent_id / "logs" / "chat_audit.jsonl"
@@ -368,6 +387,31 @@ class TelegramChatProvider(AChatProvider):
     async def is_connected(self) -> bool:
         """Check if provider is connected."""
         return self._connected and self._bot is not None
+
+    async def pause_inbound_processing(self) -> dict[str, Any]:
+        """
+        Pause inbound user processing (non-operators are queued).
+        Same effect as operator ``/pause``; callable from ``@XWAction`` or other automation.
+        """
+        self._processing_paused = True
+        with self._paused_queue_lock:
+            qn = len(self._paused_inbound_queue)
+        await self._emit_transport_status(
+            "paused",
+            "programmatic_pause",
+            command="",
+            args=str(qn),
+        )
+        return {"paused": True, "queued_inbound": qn}
+
+    async def resume_inbound_processing(self) -> dict[str, Any]:
+        """
+        Resume inbound processing and drain the FIFO pause queue (same as operator ``/resume``).
+        """
+        self._processing_paused = False
+        await self._emit_transport_status("resumed", "programmatic_resume", command="", args="")
+        await self._drain_paused_inbound_queue(self._listener_bot_username, self._listener_bot_id)
+        return {"paused": False, "drained": True}
 
     async def send_message(
         self,
@@ -636,27 +680,138 @@ class TelegramChatProvider(AChatProvider):
         Documents slash tokens handled here as *operator* controls (before the command bot runs).
         Uses the same small markup dialect as xwbots help: *bold*, _italic_, `code`.
         """
-        lines: list[str] = ["*🛰️ Transport (operators only)*"]
+        lines: list[str] = [
+            "*🛰️ Transport · operators*",
+            "_Handled in Telegram before the bot. Needs your numeric user id on the operator list._",
+        ]
         if not self._telegram_operator_user_ids:
             lines.append(
-                "_These commands exist on this provider but are inactive until numeric Telegram user ids "
-                "are configured (constructor_ `telegram_operator_user_ids`_). "
-                "Karizma reads_ `KARIZMA_TELEGRAM_OPERATOR_IDS` _or_ `TELEGRAM_OPERATOR_USER_IDS` _by default._"
+                "Inactive until env `telegram_operator_user_ids` "
+                "(Karizma: `KARIZMA_TELEGRAM_OPERATOR_IDS` or `TELEGRAM_OPERATOR_USER_IDS`)."
             )
-            return lines
         lines.extend(
             [
-                "_Your Telegram user id is on the operator list; inbound handling and listener controls:_",
-                "`/pause` or `/stop` — pause inbound; user updates queue (FIFO) until resume",
-                "`/resume` or a lone `/start` _(operator, single token)_ — resume and drain the queue",
-                "`/restart` — stop the listener; restart the host process (systemd / scripts)",
-                "`/pending` — show paused-queue length and short previews",
-                "`/log_chat` _[n]_ — tail chat JSONL audit (default 40 lines, max 500)",
-                "`/log_status` _[n]_ — tail runtime status when `transport_runtime_tail` is wired",
-                "_Aliases like_ `/adm_pause`_,_ `/op_resume`_,_ `/svc_restart` _match the same actions._",
+                "`/pause` · `/stop` · pause inbound (users queue FIFO)",
+                "`/resume` · `/start` _(single token, operator)_ · resume + drain queue",
+                "`/restart` · stop listener (restart host process)",
+                "`/pending` · paused queue preview",
+                "`/log_chat` `n` · tail JSONL audit _(default 40, max 500)_",
+                "`/log_status` `n` · tail runtime log _(if wired)_",
+                "_Aliases:_ `/adm_pause` `/op_resume` `/svc_restart` _etc._",
             ]
         )
         return lines
+
+    def attach_xw_bot_command(self, bot: Any) -> None:
+        """
+        Link an :class:`exonware.xwbots.bots.command_bot.XWBotCommand` for Telegram-only features:
+        scoped ``setMyCommands`` (see :meth:`_maybe_sync_telegram_command_menu`) when supported.
+        """
+        self._xw_bot_command = bot
+
+    async def _push_default_my_commands(self) -> None:
+        """Set a conservative default command list for all users (per-user scopes may refine)."""
+        if self._bot is None or self._xw_bot_command is None:
+            return
+        fn = getattr(self._xw_bot_command, "telegram_command_menu_entries", None)
+        if not callable(fn):
+            return
+        try:
+            # Telegram cannot show a different command list per user in private chats; use a
+            # full menu here so users at least see every slash the bot exposes (roles still enforced at runtime).
+            pairs = fn(
+                user_roles=[],
+                is_telegram_operator=False,
+                menu_mode="full",
+                include_transport_menu=False,
+            )
+            cmds = [BotCommand(c, (d or "")[:256]) for c, d in pairs if c][:100]
+            if cmds:
+                await self._bot.set_my_commands(cmds, scope=BotCommandScopeDefault())
+        except Exception as e:
+            logger.warning("%ssetMyCommands(default) failed: %s", self._log_prefix(), e)
+
+    async def _maybe_sync_telegram_command_menu(self, msg: Any, ctx: MessageContext) -> None:
+        """
+        Sync Telegram's slash command menu after ``enrich_command_context`` (so roles are known).
+
+        * **Groups / supergroups:** ``BotCommandScopeChatMember`` — menu lists only commands allowed for
+          that member's roles (``menu_mode=strict``). Transport operator commands appear only for operators.
+        * **Private chats:** Telegram does not allow ``ChatMember`` scope; we set
+          ``BotCommandScopeAllPrivateChats`` with **every** registered command (``menu_mode=full``).
+          Telegram cannot show a different menu per user in DMs — access is still enforced in
+          :meth:`exonware.xwbots.bots.command_bot.XWBotCommand.execute_command`.
+
+        Throttled by ``XWCHAT_TELEGRAM_MENU_SYNC_INTERVAL_S`` (default 120s) per (chat_id, user_id).
+        """
+        if self._bot is None or self._xw_bot_command is None:
+            return
+        u = getattr(msg, "from_user", None)
+        if u is None:
+            return
+        try:
+            chat_id = int(getattr(msg.chat, "id"))
+            user_id = int(getattr(u, "id"))
+        except (TypeError, ValueError):
+            return
+        fn = getattr(self._xw_bot_command, "telegram_command_menu_entries", None)
+        enrich = getattr(self._xw_bot_command, "enrich_command_context", None)
+        if not callable(fn) or not asyncio.iscoroutinefunction(enrich):
+            return
+        data: dict[str, Any] = {k: v for k, v in ctx.items()}
+        data.setdefault("help_format", "telegram_html")
+        stub = SimpleNamespace(text=str(data.get("text") or "/menu").strip() or "/menu", _message_data=data)
+        try:
+            await enrich("menu", stub, data)
+        except Exception as e:
+            logger.debug("%sMenu enrich failed: %s", self._log_prefix(), e, exc_info=True)
+            return
+        roles = data.get("user_roles")
+        if not isinstance(roles, list):
+            roles = []
+        is_op = self._is_telegram_operator(str(user_id))
+        chat_type = str(getattr(msg.chat, "type", "") or "").lower()
+        is_private = chat_type == "private"
+        # Private: Telegram rejects BotCommandScopeChatMember; only global private/default scopes exist,
+        # so we cannot show a per-user menu. Use "full" list (all commands) for AllPrivateChats — roles
+        # are still enforced in execute_command. Throttle signature ignores roles so we do not thrash API.
+        if is_private:
+            # One shared menu for all private chats; list is identical for every user when transport is omitted.
+            sig = "private_full"
+            menu_mode = "full"
+            include_transport = False
+            # Throttle globally: same command payload for every private chat user.
+            menu_key: tuple[Any, ...] = ("__private_menu__", 0)
+        else:
+            sig = ",".join(sorted(str(r).strip().lower() for r in roles if r is not None)) + f"|op={int(is_op)}"
+            menu_mode = "strict"
+            include_transport = bool(is_op)
+            menu_key = (chat_id, user_id)
+        key = menu_key
+        now = time.monotonic()
+        prev = self._telegram_menu_last_sync.get(key)
+        if prev and (now - prev[0]) < self._telegram_menu_min_interval_s and prev[1] == sig:
+            return
+        try:
+            pairs = fn(
+                user_roles=roles,
+                is_telegram_operator=is_op,
+                menu_mode=menu_mode,
+                include_transport_menu=include_transport,
+            )
+            cmds = [BotCommand(c, (d or "")[:256]) for c, d in pairs if c][:100]
+            if not cmds:
+                return
+            if is_private:
+                await self._bot.set_my_commands(cmds, scope=BotCommandScopeAllPrivateChats())
+            else:
+                await self._bot.set_my_commands(
+                    cmds,
+                    scope=BotCommandScopeChatMember(chat_id=chat_id, user_id=user_id),
+                )
+            self._telegram_menu_last_sync[key] = (now, sig)
+        except Exception as e:
+            logger.warning("%ssetMyCommands(menu sync) failed: %s", self._log_prefix(), e)
 
     def _is_telegram_operator(self, user_id_str: str) -> bool:
         if not self._telegram_operator_user_ids:
@@ -827,10 +982,11 @@ class TelegramChatProvider(AChatProvider):
 
         Non-operators keep the usual Telegram /start behaviour from the registered downstream handler.
         Operators may use a lone /start or /resume here to resume after /stop or /pause (single-token only).
-        """
-        if not self._is_telegram_operator(user_id_str):
-            return False
 
+        Transport-only slash tokens are **not** registered on the command bot; if we did nothing here,
+        non-operators would see "I don't know /pause". We therefore reply with a short operator hint and
+        consume the update (except a lone ``/start``, which stays with the app bot).
+        """
         parts = (command_text or "").strip().split()
         cmd = self._command_token_from_text(command_text)
         stop_cmds = frozenset(
@@ -863,6 +1019,34 @@ class TelegramChatProvider(AChatProvider):
         )
         restart_cmds = frozenset({"restart", "adm_restart", "admin_restart", "op_restart", "svc_restart"})
         pending_cmds = frozenset({"pending", "adm_pending", "op_pending", "paused_queue"})
+        log_cmds = frozenset({"log_chat", "log_status", "log_runtime"})
+        # Lone /start (single token) is the normal app welcome for everyone; do not consume here.
+        transport_non_start = stop_cmds | restart_cmds | pending_cmds | log_cmds
+        resume_aliases = frozenset({"resume", "adm_resume", "admin_resume", "op_resume", "svc_resume"})
+        start_admin_aliases = frozenset({"adm_start", "admin_start", "op_start", "svc_start"})
+
+        if not self._is_telegram_operator(user_id_str):
+            if cmd == "start" and len(parts) == 1:
+                return False
+            if cmd in transport_non_start or cmd in resume_aliases or cmd in start_admin_aliases:
+                hint = (
+                    "🔒 That command controls the Telegram transport (pause / resume / restart / logs) "
+                    "and is **only for operators**.\n\n"
+                    "Ask the host to add your numeric Telegram user id to "
+                    "`telegram_operator_user_ids` when constructing the provider "
+                    "(Karizma: `KARIZMA_TELEGRAM_OPERATOR_IDS` or `TELEGRAM_OPERATOR_USER_IDS`).\n\n"
+                    "📖 Send /help — transport commands are listed there even before ids are configured."
+                )
+                await msg.reply_text(hint, disable_web_page_preview=True)
+                await self._emit_transport_status(
+                    "operator_denied",
+                    "transport_command_non_operator",
+                    command=cmd,
+                    args="",
+                    user_id=user_id_str,
+                )
+                return True
+            return False
 
         if cmd in stop_cmds:
             if len(parts) != 1:
@@ -1169,6 +1353,9 @@ class TelegramChatProvider(AChatProvider):
             except Exception as e:
                 logger.error("Error auto-saving user info: %s", e, exc_info=True)
 
+        if self.should_handle_message(ctx):
+            await self._maybe_sync_telegram_command_menu(msg, ctx)
+
         response = self.invoke_message_handler(ctx)
         if asyncio.iscoroutine(response):
             response = await response
@@ -1339,6 +1526,8 @@ class TelegramChatProvider(AChatProvider):
                     bot_id = me.id
             except Exception as e:
                 logger.debug("%sget_me() failed (group mentions may not work): %s", self._log_prefix(), e)
+        self._listener_bot_username = bot_username
+        self._listener_bot_id = bot_id
 
         def _polling_error_callback(exc: TelegramError) -> None:
             """Custom error callback so we log a short warning for NetworkError instead of full traceback."""
@@ -1386,19 +1575,47 @@ class TelegramChatProvider(AChatProvider):
 
         # TEXT including commands so the application-registered handler can process them
         self._application.add_handler(MessageHandler(filters.TEXT, message_handler))
-        logger.info(f"{self._log_prefix()}Started listening for messages with auto-response...")
+        # Do not log "listening" until Telegram accepts initialize/start; otherwise failures look like
+        # "started then immediately shut down" when finally runs cleanup.
+        logger.info(
+            "%sTelegram: connecting (initialize -> start -> polling)...",
+            self._log_prefix(),
+        )
         # Start the application with polling (async version for use within async context)
         try:
-            # Initialize and start the application
-            await self._application.initialize()
-            await self._application.start()
-            # Start polling
-            await self._application.updater.start_polling(
-                drop_pending_updates=True,
-                allowed_updates=["message"],
-                error_callback=_polling_error_callback,
+            init_retries = 3
+            init_backoff_s = 1.25
+            for attempt in range(1, init_retries + 1):
+                try:
+                    await self._application.initialize()
+                    await self._application.start()
+                    await self._application.updater.start_polling(
+                        drop_pending_updates=True,
+                        allowed_updates=["message"],
+                        error_callback=_polling_error_callback,
+                    )
+                    break
+                except (NetworkError, OSError, TimeoutError) as exc:
+                    logger.warning(
+                        "%sTelegram connect failed (%s/%s). Check internet, VPN, proxy, and HTTPS to api.telegram.org — %s",
+                        self._log_prefix(),
+                        attempt,
+                        init_retries,
+                        exc,
+                    )
+                    await self._telegram_reset_application_session()
+                    if attempt >= init_retries:
+                        raise XWChatConnectionError(
+                            "Telegram API unreachable during startup (initialize/start/polling). "
+                            "Verify outbound HTTPS to api.telegram.org and try again."
+                        ) from exc
+                    await asyncio.sleep(init_backoff_s * attempt)
+
+            logger.info(
+                "%sTelegram: connected; listening for messages (auto-response on)",
+                self._log_prefix(),
             )
-            logger.info(f"{self._log_prefix()}Bot is now listening for messages...")
+            await self._push_default_my_commands()
             await self._emit_transport_status("listener_up", "telegram_polling_started", command="", args="")
             # Keep running until interrupted
             try:
@@ -1419,6 +1636,31 @@ class TelegramChatProvider(AChatProvider):
                 pass
             # Cleanup
             await self._shutdown_listener()
+
+    async def _telegram_reset_application_session(self) -> None:
+        """
+        Best-effort PTB teardown between startup retries.
+
+        python-telegram-bot may leave the Application half-initialized after a failed
+        ``get_me``/network error; resetting avoids a stuck client on the next attempt.
+        """
+        app = self._application
+        if not app:
+            return
+        try:
+            u = getattr(app, "updater", None)
+            if u is not None:
+                await u.stop()
+        except Exception:
+            pass
+        try:
+            await app.stop()
+        except Exception:
+            pass
+        try:
+            await app.shutdown()
+        except Exception:
+            pass
 
     async def _shutdown_listener(self) -> None:
         """Shutdown the listener gracefully."""

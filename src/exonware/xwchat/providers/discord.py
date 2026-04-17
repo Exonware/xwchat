@@ -5,7 +5,7 @@ Discord chat provider implementation using discord.py.
 Company: eXonware.com
 Author: eXonware Backend Team
 Email: connect@exonware.com
-Version: 0.0.1.9
+Version: 0.0.1.10
 Generation Date: 26-Feb-2026
 """
 
