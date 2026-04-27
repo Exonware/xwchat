@@ -1,0 +1,63 @@
+# Source size (src/*): ~341.8 KB
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic.version]
+attr = "exonware.xwchat.version.__version__"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md", "*.json", "*.yaml", "*.yml"]
+
+[project]
+name = "exonware-xwchat"
+dynamic = ["version"]
+description = "Chat agent framework for the eXonware ecosystem"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "eXonware Backend Team" }]
+maintainers = []
+keywords = []
+classifiers = []
+dependencies = [
+  "exonware-xwsystem==0.9.0.39",
+]
+
+[project.license]
+text = "Apache-2.0"
+
+[project.optional-dependencies]
+# First-party XW libs composed by this package (excludes exonware-xwsystem==0.9.0.37; see lazy/full).
+xw = []
+lazy = [
+  "exonware-xwchat[xw]==0.0.1.10",
+  "exonware-xwlazy==1.0.1.81",
+  "exonware-xwsystem[lazy]==0.9.0.39",
+]
+full = [
+  "exonware-xwchat[xw]==0.0.1.10",
+  "exonware-xwsystem[full]==0.9.0.39",
+  "fastapi>=0.104.0",
+  "uvicorn[standard]>=0.24.0",
+  "beautifulsoup4>=4.9.0",
+  "discord.py>=2.0",
+  "google-auth>=2.23.0",
+  "line-bot-sdk>=3.0",
+  "python-telegram-bot>=20.0",
+  "wsaccel",
+]
+dev = [
+  "exonware-xwchat[full]==0.0.1.10",
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.20.0",
+  "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/exonware/xwchat"
+Documentation = "https://github.com/exonware/xwchat/docs"
+Repository = "https://github.com/exonware/xwchat"
+Issues = "https://github.com/exonware/xwchat/issues"

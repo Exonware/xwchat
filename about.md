@@ -1,0 +1,1 @@
+xwchat is the conversation engine for eXonware, normalizing messages, providers, and chat workflows so assistants and bots can integrate across channels through a consistent, developer-friendly interface.

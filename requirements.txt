@@ -1,0 +1,94 @@
+# xwchat Requirements
+# Company: eXonware.com
+# Author: eXonware Backend Team
+# Email: connect@exonware.com
+# Version: 0.0.1.0
+# Generation Date: 07-Jan-2025
+#
+# This file contains all dependencies needed for xwchat
+# Compatible with Python 3.12+ for maximum compatibility
+#
+# Usage:
+#   pip install -r requirements.txt
+#   
+# For Replit and other cloud IDEs:
+#   Just add this file to your project root and dependencies will be auto-installed
+
+# =============================================================================
+# CORE DEPENDENCIES
+# =============================================================================
+
+# Core eXonware dependencies
+# Source size (src/*): ~341.8 KB
+exonware-xwsystem==0.9.0.39
+
+# =============================================================================
+# OPTIONAL DEPENDENCIES (Install with [full] extra)
+# =============================================================================
+
+# Provider support (parrot_bot example and xwchat providers)
+python-telegram-bot>=20.0   # Telegram
+discord.py>=2.0             # Discord (pulls in aiohttp)
+aiohttp>=3.8                # WhatsApp webhook server (also used by discord.py)
+
+# =============================================================================
+# DEVELOPMENT AND TESTING DEPENDENCIES
+# =============================================================================
+
+# Testing Framework
+pytest>=7.0.0                       # Testing framework
+pytest-cov>=4.0.0                   # Coverage reporting
+pytest-asyncio>=0.20.0              # Async testing support
+
+# Code Quality
+black>=22.0.0                       # Code formatting
+isort>=5.10.0                       # Import sorting
+flake8>=4.0.0                       # Linting
+
+# Type Checking
+mypy>=0.950                          # Static type checking
+
+# =============================================================================
+# COMPATIBILITY NOTES
+# =============================================================================
+#
+# Python Version Compatibility:
+# - Minimum: Python 3.12 (as per pyproject.toml)
+# - Recommended: Python 3.12+ for best compatibility
+# - Tested: Python 3.12, 3.13
+#
+# Platform Compatibility:
+# - Windows: Full support
+# - Linux: Full support  
+# - macOS: Full support
+#
+# Cloud IDE Support:
+# - Replit: ✅ Full support
+# - GitHub Codespaces: ✅ Full support  
+# - GitPod: ✅ Full support
+# - Google Colab: ✅ Full support
+# - Jupyter: ✅ Full support
+#
+# =============================================================================
+# INSTALLATION VERIFICATION
+# =============================================================================
+#
+# After installing requirements, verify with:
+#   python -c "from exonware.xwchat import *; print('✅ xwchat loaded!')"
+#
+# Or run comprehensive verification:
+#   python tests/verify_installation.py
+#
+# Expected output:
+#   🎉 SUCCESS! exonware.xwchat is ready to use!
+
+slack-sdk
+twilio
+zulip
+nio
+wechatpy
+praw
+inspect2
+cachebox
+brotli
+wsaccel

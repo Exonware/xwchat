@@ -1,0 +1,8 @@
+projects:
+  xwchat:
+    repo: xwchat
+    package_main: exonware-xwchat
+    package_wrapper: xwchat
+    python_version: "3.12"
+    has_wrapper: true
+    uses_check_versions: true

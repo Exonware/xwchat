@@ -1,0 +1,66 @@
+# Source size (src/*): ~341.8 KB
+[build-system]
+requires = [
+    "setuptools>=68.0",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic.version]
+attr = "exonware.xwchat.version.__version__"
+
+[tool.setuptools.packages.find]
+where = [
+    "src",
+]
+
+[tool.setuptools.package-data]
+"*" = [
+    "*.txt",
+    "*.md",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+]
+
+[project]
+name = "xwchat"
+dynamic = [
+    "version",
+]
+description = "Convenience wrapper for exonware-xwchat - provides 'import xwchat' alias"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "eXonware Backend Team" },
+]
+maintainers = []
+keywords = []
+classifiers = []
+dependencies = [
+    "exonware-xwchat",
+]
+
+[project.license]
+text = "Apache-2.0"
+
+[project.optional-dependencies]
+# First-party XW libs composed by this package (excludes exonware-xwsystem==0.9.0.37; see lazy/full).
+xw = [
+    "exonware-xwchat[xw]",
+]
+lazy = [
+    "exonware-xwchat[lazy]",
+]
+full = [
+    "exonware-xwchat[full]",
+]
+dev = [
+    "exonware-xwchat[dev]",
+]
+
+[project.urls]
+Homepage = "https://github.com/exonware/xwchat"
+Documentation = "https://github.com/exonware/xwchat/docs"
+Repository = "https://github.com/exonware/xwchat"
+Issues = "https://github.com/exonware/xwchat/issues"

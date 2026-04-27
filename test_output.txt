@@ -1,0 +1,92 @@
+
+=================================== ERRORS ====================================
+______________ ERROR collecting tests/0.core/test_core_agent.py _______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_______________ ERROR collecting tests/0.core/test_core_base.py _______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+------------------------------- Captured stdout -------------------------------
+[OK] [xwlazy] Installed: cachebox via pip (5.2s) [triggered by exonware.xwsystem.caching.external_caching_python]
+[OK] [xwlazy] Installed: brotli via pip (2.54s) [triggered by httpx._decoders]
+____________ ERROR collecting tests/0.core/test_core_contracts.py _____________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_______________ ERROR collecting tests/0.core/test_core_defs.py _______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+______________ ERROR collecting tests/0.core/test_core_errors.py ______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+______________ ERROR collecting tests/0.core/test_core_facade.py ______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_____________ ERROR collecting tests/0.core/test_core_logging.py ______________
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_ ERROR collecting tests/1.unit/providers_tests/test_providers_async_lifecycle.py _
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+____ ERROR collecting tests/1.unit/providers_tests/test_providers_basic.py ____
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+__ ERROR collecting tests/1.unit/providers_tests/test_providers_dingtalk.py ___
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_ ERROR collecting tests/1.unit/providers_tests/test_providers_invalid_init.py _
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+____ ERROR collecting tests/1.unit/providers_tests/test_providers_slack.py ____
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_ ERROR collecting tests/1.unit/providers_tests/test_providers_telegram_format.py _
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+_ ERROR collecting tests/1.unit/providers_tests/test_providers_telegram_utils.py _
+E   StopIteration
+
+During handling of the above exception, another exception occurred:
+E   StopIteration
+=========================== short test summary info ===========================
+ERROR tests/0.core/test_core_agent.py - StopIteration
+ERROR tests/0.core/test_core_base.py - StopIteration
+ERROR tests/0.core/test_core_contracts.py - StopIteration
+ERROR tests/0.core/test_core_defs.py - StopIteration
+ERROR tests/0.core/test_core_errors.py - StopIteration
+ERROR tests/0.core/test_core_facade.py - StopIteration
+ERROR tests/0.core/test_core_logging.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_async_lifecycle.py - StopIt...
+ERROR tests/1.unit/providers_tests/test_providers_basic.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_dingtalk.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_invalid_init.py - StopItera...
+ERROR tests/1.unit/providers_tests/test_providers_slack.py - StopIteration
+ERROR tests/1.unit/providers_tests/test_providers_telegram_format.py - StopIt...
+ERROR tests/1.unit/providers_tests/test_providers_telegram_utils.py - StopIte...
+!!!!!!!!!!!!!!!!!! Interrupted: 14 errors during collection !!!!!!!!!!!!!!!!!!!
+14 errors in 25.17s
